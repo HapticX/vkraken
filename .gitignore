@@ -1,0 +1,8 @@
+# Builds
+*.so
+*.exe
+*.pyd
+*.pyc
+
+# Docs
+htmldocs/
