@@ -53,7 +53,7 @@ jobs:
           nimble install -y -d
 
       - name: Generate API documents 📃
-        run: nim doc --index:on -d:docgen --project --out:docs --hints:off src/vkraken.nim
+        run: nim doc --project --out:htmldocs --hints:off -d:ssl src/vkraken.nim
 
       - name: Deploy documents 💨
         uses: peaceiris/actions-gh-pages@v3
