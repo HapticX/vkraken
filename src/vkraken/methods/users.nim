@@ -223,7 +223,7 @@ proc getSubscriptions*(x: UsersMethods, user_id: int, extended: bool = false,
   ## в поле `items`, а также общее число результатов в поле `count`.
   let response = await x.vk.callVkMethod("users.getSubscriptions", %*{
     "fields": fields.join(","),
-    "extended": if extended: 1 else: 0,
+    "extended": extended.int,
     "user_id": user_id,
     "offset": offset,
     "count": count,
@@ -261,13 +261,14 @@ proc report*(x: UsersMethods, user_id: int, `type`: ReportType, comment: string 
     result.add(j.fromJson(User))
 
 
-proc search*(x: UsersMethods, q: string, sort: SearchUserSort = susPopularity,
+proc search*(x: UsersMethods, q: string, sort: SearchUserSort = SearchUserSort.Popularity,
              offset: int = 0, count: int = 100, fields: seq[string] = @[],
              city: int = 0, city_id: int = 0, country: int = 0,
              country_id: int = 0, hometown: string = "",
              university_country: int = 0, university: int = 0,
              university_year: int = 0, university_faculty: int = 0,
-             university_chair: int = 0, sex: int = 0, status: int = 0,
+             university_chair: int = 0, sex: Gender = Gender.AnyGender,
+             status: MaritalStatus = MaritalStatus.NotMatter,
              age_from: int = 0, age_to: int = 0, birth_day: int = 0,
              birth_month: int = 0, birth_year: int = 0,
              online: bool = false, has_photo: bool = false,
@@ -275,15 +276,15 @@ proc search*(x: UsersMethods, q: string, sort: SearchUserSort = susPopularity,
              school_class: int = 0, school: int = 0,
              school_year: int = 0, religion: string = "",
              company: string = "", position: string = "",
-             group_id: int = 0, from_list: string = "",
+             group_id: int = 0, from_list: seq[string] = @[],
              screen_ref: string = ""): Future[seq[User]] {.async.} =
   ## Осуществляет поиск пользователей VK.
   ##
   ## ## Arguments
   ## - `q` -- Строка поискового запроса. Например, Вася Бабич.
   ## - `sort` -- Сортировка результатов. Возможные значения:
-  ##   - `susRegDate` — по дате регистрации,
-  ##   - `susPopularity` — по популярности.
+  ##   - `RegDate` — по дате регистрации,
+  ##   - `Popularity` — по популярности.
   ## - `offset` -- Смещение относительно первого найденного пользователя для выборки определенного подмножества.
   ## - `count` -- Количество возвращаемых пользователей.
   ##   Обратите внимание, даже при использовании параметра offset для получения информации доступны только первые 1000 результатов.
@@ -362,18 +363,18 @@ proc search*(x: UsersMethods, q: string, sort: SearchUserSort = susPopularity,
   ## - `university_faculty` -- Идентификатор факультета.
   ## - `university_chair` -- Идентификатор кафедры.
   ## - `sex` -- Пол. Возможные значения:
-  ##   - `1` — женщина,
-  ##   - `2` — мужчина,
-  ##   - `0` — любой (по умолчанию).
+  ##   - `Female` — женщина,
+  ##   - `Male` — мужчина,
+  ##   - `AnyGender` — любой (по умолчанию).
   ## - `status` -- Семейное положение. Возможные значения:
-  ##   - `1` — не женат (не замужем),
-  ##   - `2` — встречается,
-  ##   - `3` — помолвлен(-а),
-  ##   - `4` — женат (замужем),
-  ##   - `5` — всё сложно,
-  ##   - `6` — в активном поиске,
-  ##   - `7` — влюблен(-а),
-  ##   - `8` — в гражданском браке.
+  ##   - `NotMarried` — не женат (не замужем),
+  ##   - `Dating` — встречается,
+  ##   - `Engaged` — помолвлен(-а),
+  ##   - `Married` — женат (замужем),
+  ##   - `Difficult` — всё сложно,
+  ##   - `ActiveSearch` — в активном поиске,
+  ##   - `InLove` — влюблен(-а),
+  ##   - `CivilMarriage` — в гражданском браке.
   ## - `age_from` -- Возраст, от.
   ## - `age_to` -- Возраст, до.
   ## - `birth_day` -- День рождения.
@@ -403,7 +404,7 @@ proc search*(x: UsersMethods, q: string, sort: SearchUserSort = susPopularity,
   ## После успешного выполнения возвращает объект, содержащий число
   var arguments = %*{
     "q": q,
-    "sort": if sort == susPopularity: 0 else: 1,
+    "sort": if sort == Popularity: 0 else: 1,
     "offset": offset,
     "count": count,
     "fields": fields.join(","),
@@ -417,15 +418,27 @@ proc search*(x: UsersMethods, q: string, sort: SearchUserSort = susPopularity,
     "university_year": university_year,
     "university_faculty": university_faculty,
     "university_chair": university_chair,
-    "sex": sex,
-    "status": status,
+    "sex": case sex
+      of Gender.Female: 1
+      of Gender.Male: 2
+      of Gender.AnyGender: 0,
+    "status": case status
+      of MaritalStatus.NotMarried: 1
+      of MaritalStatus.Dating: 2
+      of MaritalStatus.Engaged: 3
+      of MaritalStatus.Married: 4
+      of MaritalStatus.Difficult: 5
+      of MaritalStatus.ActiveSearch: 6
+      of MaritalStatus.InLove: 7
+      of MaritalStatus.CivilMarriage: 8
+      of MaritalStatus.NotMatter: 0,
     "age_from": age_from,
     "age_to": age_to,
     "birth_day": birth_day,
     "birth_month": birth_month,
     "birth_year": birth_year,
-    "online": if online: 1 else: 0,
-    "has_photo": if has_photo: 1 else: 0,
+    "online": online.int,
+    "has_photo": has_photo.int,
     "school_country": school_country,
     "school_city": school_city,
     "school_class": school_class,
@@ -435,13 +448,15 @@ proc search*(x: UsersMethods, q: string, sort: SearchUserSort = susPopularity,
     "company": company,
     "position": position,
     "group_id": group_id,
-    "from_list": from_list,
+    "from_list": from_list.join(","),
     "screen_ref": screen_ref,
   }
   for k, v in arguments:
     if v.kind == JString and v.getStr == "":
       arguments.delete(k)
     elif v.kind == JInt and v.getInt == 0:
+      arguments.delete(k)
+    elif v.kind == JArray and v.len == 0:
       arguments.delete(k)
   let response = await x.vk.callVkMethod("users.search", arguments)
   result = @[]

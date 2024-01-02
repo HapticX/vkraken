@@ -16,8 +16,25 @@ type
     rInsult = "insult",
     rAdvertisement = "adverisement"
   SearchUserSort* {.pure, size: sizeof(int8).} = enum
-    susRegDate,
-    susPopularity
+    RegDate,
+    Popularity
+  Gender* {.pure, size: sizeof(int8).} = enum
+    Female,
+    Male,
+    AnyGender
+  SearchHintType* {.pure.} = enum
+    Group = "group",
+    Profile = "profile"
+  MaritalStatus* {.pure, size: sizeof(int8).} = enum
+    NotMatter = 0,
+    NotMarried = 1,
+    Dating = 2,
+    Engaged = 3,
+    Married = 4,
+    Difficult = 5,
+    ActiveSearch = 6,
+    InLove = 7,
+    CivilMarriage = 8
   Platform* {.pure, size: sizeof(int).} = enum
     MobileVersion = 1,
     Iphone = 2,
@@ -169,6 +186,29 @@ type
     id*: int
     name*: string
     `type`*: RelativeType
+  SearchHintGroup* = object
+    id*: int
+    name*: string
+    is_closed*: int
+    is_admin*: int
+    is_member*: int
+    `type`*: string
+    photo*: string
+    photo_medium*: string
+    photo_big*: string
+  SearchHintProfile* = object
+    id*: int
+    first_name*: string
+    last_name*: string
+  SearchHint* = object
+    case `type`*: SearchHintType
+    of SearchHintType.Group:
+      group*: SearchHintGroup
+    of SearchHintType.Profile:
+      profile*: SearchHintProfile
+    section*: string
+    description*: string
+    global*: int
   School = object
     id*: int
     country*: int
@@ -591,3 +631,32 @@ type
     privacy_view*: string  ## Настройки приватности комментирования заметки
     can_comment*: int  ## Есть ли возможность оставлять комментарии
     text_wiki*: string  ## Тэги ссылок на wiki
+
+
+# ---=== Hooks ===--- #
+
+proc enumHook*(s: string, v: var SearchHintType) =
+  v = case s:
+  of "group": SearchHintType.Group
+  of "profile": SearchHintType.Profile
+  else: SearchHintType.Profile
+
+
+proc enumHook*(s: string, v: var Gender) =
+  v = case s:
+  of "0": Gender.AnyGender
+  of "1": Gender.Female
+  of "2": Gender.Male
+  else: Gender.AnyGender
+
+
+proc enumHook*(s: string, v: var Platform) =
+  v = case s:
+  of "1": MobileVersion
+  of "2": Iphone
+  of "3": Ipad
+  of "4": Android
+  of "5": WindowsPhone
+  of "6": Windows10
+  of "7": FullVersion
+  else: FullVersion

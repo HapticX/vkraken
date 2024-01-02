@@ -24,8 +24,11 @@ type
     version*: string
     client: AsyncHttpClient
   # just some syntax sugar ~
-  UsersMethods* = object  # object for users methods
+  MethodsRoot* = object of RootObj
     vk*: VkClient
+  MessagesMethods* = object of MethodsRoot  # object for search methods
+  UsersMethods* = object of MethodsRoot  # object for users methods
+  SearchMethods* = object of MethodsRoot  # object for search methods
 
 
 proc initVk*(accessToken: string, version: float = 5.199, lang: string = ""): VkClient =
@@ -129,8 +132,13 @@ proc callVkMethod*(self: VkClient, name: string, arguments: JsonNode): Future[Js
   return response.response
 
 
-proc users*(self: VkClient): UsersMethods =
-  UsersMethods(vk: self)
+template methods(funcname, obj: untyped): untyped =
+  proc `funcname`*(self: VkClient): `obj` = `obj`(vk: self)
+
+
+methods(messages, MessagesMethods)
+methods(users, UsersMethods)
+methods(search, SearchMethods)
 
 
 macro `~`*(self: VkClient, call: untyped): untyped =

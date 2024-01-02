@@ -1,7 +1,7 @@
 import
   ./[
-    users
+    users, search
   ]
 
 export
-  users
+  users, search

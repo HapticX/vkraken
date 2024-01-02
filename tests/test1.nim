@@ -18,3 +18,10 @@ for user in waitFor user.users.search("Фомин Никита", count = 1):
 
 echo "get by ID"
 echo (waitFor user~users.get(user_ids = "556962840"))[0]["first_name"]
+
+echo "search hints ..."
+for obj in waitFor user.search.getHints("Никита", limit = 5):
+  if obj.`type` == SearchHintType.Group:
+    echo "GROUP [", $obj.group.id, "] ", obj.group.name
+  else:
+    echo "USER [", $obj.profile.id, "] ", obj.profile.first_name, " ", obj.profile.last_name
