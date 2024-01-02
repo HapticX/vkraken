@@ -1,3 +1,4 @@
+author = "HapticX"
 description = "VK API for Nim"
 version = "0.0.1"
 license = "MIT"
