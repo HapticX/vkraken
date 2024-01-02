@@ -49,6 +49,7 @@ jobs:
 
       - name: Install Dependencies 🔃
         run: |
+          nim -v
           nimble refresh
           nimble install -y -d
 
