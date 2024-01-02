@@ -29,6 +29,8 @@ echo "get by ID"
 echo (waitFor user~users.get(user_ids = "556962840"))[0]["first_name"]
 
 
+# ---=== Work with chat ===--- #
+
 echo "create chat ..."
 let chat = waitFor user.messages.createChat(@[], "VKrakenTest")
 echo "chat [", chat.chat_id, "]"
