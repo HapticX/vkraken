@@ -36,3 +36,14 @@ type
   ForbiddenActionPaymentException* = object of VkException  # 500
   AdAccountAccessException* = object of VkException  # 600
   AdAccountErrorException* = object of VkException  # 603
+  OutOfLimitsException* = object of VkException  # 103
+  NotChatAdminException* = object of VkException  # 925
+  CommunityInteractionLimitException* = object of VkException  # 932
+  ContactNotFoundException* = object of VkException  # 936
+  MessageRequestSentException* = object of VkException  # 939
+  DisabledChatException* = object of VkException  # 945
+  UnsupportedChatException* = object of VkException  # 946
+  UserAccessDeniedException* = object of VkException  # 947
+  NotEmployeeException* = object of VkException  # 967
+  PrivacySettingsException* = object of VkException  # 981
+  TemporaryChatAdditionException* = object of VkException  # 982

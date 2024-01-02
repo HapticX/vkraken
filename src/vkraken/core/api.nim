@@ -8,6 +8,9 @@ import
   ./exceptions,
   ./objects
 
+when defined(vkrakenDebug):
+  import terminal
+
 export
   json
 
@@ -127,8 +130,35 @@ proc callVkMethod*(self: VkClient, name: string, arguments: JsonNode): Future[Js
       raise newException(AdAccountAccessException, response.error.error_msg)
     of 603:
       raise newException(AdAccountErrorException, response.error.error_msg)
+    of 103:
+      raise newException(OutOfLimitsException, response.error.error_msg)
+    of 925:
+      raise newException(NotChatAdminException, response.error.error_msg)
+    of 932:
+      raise newException(CommunityInteractionLimitException, response.error.error_msg)
+    of 936:
+      raise newException(ContactNotFoundException, response.error.error_msg)
+    of 939:
+      raise newException(MessageRequestSentException, response.error.error_msg)
+    of 945:
+      raise newException(DisabledChatException, response.error.error_msg)
+    of 946:
+      raise newException(UnsupportedChatException, response.error.error_msg)
+    of 947:
+      raise newException(UserAccessDeniedException, response.error.error_msg)
+    of 967:
+      raise newException(NotEmployeeException, response.error.error_msg)
+    of 981:
+      raise newException(PrivacySettingsException, response.error.error_msg)
+    of 982:
+      raise newException(TemporaryChatAdditionException, response.error.error_msg)
     else:
       raise newException(VkException, $response.error)
+  when defined(vkrakenDebug):
+    styledEcho fgYellow, "New request:"
+    styledEcho fgYellow, "  URL: ", styleUnderscore, styleBright, fgBlue, url
+    styledEcho fgYellow, "  Response:"
+    styledEcho styleBright, fgYellow, "  ", $response
   return response.response
 
 
@@ -153,3 +183,13 @@ macro `~`*(self: VkClient, call: untyped): untyped =
       newLit($arg[0]),
       arg[1]
     ))
+
+
+template removeEmptyArgs* =
+  for k, v in arguments:
+    if v.kind == JString and v.getStr == "":
+      arguments.delete(k)
+    elif v.kind == JInt and v.getInt == 0:
+      arguments.delete(k)
+    elif v.kind == JArray and v.len == 0:
+      arguments.delete(k)

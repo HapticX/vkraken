@@ -631,6 +631,12 @@ type
     privacy_view*: string  ## Настройки приватности комментирования заметки
     can_comment*: int  ## Есть ли возможность оставлять комментарии
     text_wiki*: string  ## Тэги ссылок на wiki
+  ChatUpdate* = object
+    message_id*: int  ## идентификатор отправленного системного сообщения
+    chat*: Chat  ## объект мультидиалога.
+  CreatedChat* = object
+    chat_id*: int
+    peer_ids*: seq[int]
 
 
 # ---=== Hooks ===--- #

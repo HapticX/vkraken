@@ -451,13 +451,7 @@ proc search*(x: UsersMethods, q: string, sort: SearchUserSort = SearchUserSort.P
     "from_list": from_list.join(","),
     "screen_ref": screen_ref,
   }
-  for k, v in arguments:
-    if v.kind == JString and v.getStr == "":
-      arguments.delete(k)
-    elif v.kind == JInt and v.getInt == 0:
-      arguments.delete(k)
-    elif v.kind == JArray and v.len == 0:
-      arguments.delete(k)
+  removeEmptyArgs()
   let response = await x.vk.callVkMethod("users.search", arguments)
   result = @[]
   for i in response["items"]:

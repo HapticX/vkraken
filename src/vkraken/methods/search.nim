@@ -80,13 +80,7 @@ proc getHints*(x: SearchMethods, q: string, offset: int = 0, limit: int = 100,
     "filters": filters.join(","),
     "search_global": search_global.int,
   }
-  for k, v in arguments:
-    if v.kind == JString and v.getStr == "":
-      arguments.delete(k)
-    elif v.kind == JInt and v.getInt == 0:
-      arguments.delete(k)
-    elif v.kind == JArray and v.len == 0:
-      arguments.delete(k)
+  removeEmptyArgs()
   let response = await x.vk.callVkMethod("search.getHints", arguments)
   result = @[]
   for i in response["items"]:

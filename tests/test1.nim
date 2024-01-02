@@ -27,3 +27,8 @@ for obj in waitFor user.search.getHints("Никита", limit = 5):
 # ---=== `~` macro ===--- #
 echo "get by ID"
 echo (waitFor user~users.get(user_ids = "556962840"))[0]["first_name"]
+
+
+echo "create chat ..."
+let chat = waitFor user.messages.createChat(@[], "VKrakenTest")
+echo "chat [", chat.chat_id, "]"
