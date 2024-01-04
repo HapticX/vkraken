@@ -80,7 +80,7 @@ proc getHints*(x: SearchMethods, q: string, offset: int = 0, limit: int = 100,
     "filters": filters.join(","),
     "search_global": search_global.int,
   }
-  removeEmptyArgs()
+  arguments.removeEmptyArgs()
   let response = await x.vk.callVkMethod("search.getHints", arguments)
   result = @[]
   for i in response["items"]:

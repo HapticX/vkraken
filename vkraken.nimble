@@ -6,3 +6,4 @@ srcDir = "src"
 
 requires "nim >= 2.0.0"
 requires "nimpy >= 0.2.0"
+requires "jsony"

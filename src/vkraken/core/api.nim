@@ -185,7 +185,7 @@ macro `~`*(self: VkClient, call: untyped): untyped =
     ))
 
 
-template removeEmptyArgs*(): untyped =
+proc removeEmptyArgs*(arguments: JsonNode) =
   for k, v in arguments:
     if v.kind == JString and v.getStr == "":
       arguments.delete(k)

@@ -451,7 +451,7 @@ proc search*(x: UsersMethods, q: string, sort: SearchUserSort = SearchUserSort.P
     "from_list": from_list.join(","),
     "screen_ref": screen_ref,
   }
-  removeEmptyArgs()
+  arguments.removeEmptyArgs()
   let response = await x.vk.callVkMethod("users.search", arguments)
   result = @[]
   for i in response["items"]:

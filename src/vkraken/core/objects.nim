@@ -1,6 +1,11 @@
 import
+  strformat,
+  strutils,
+  terminal,
+  macros,
   jsony,
-  json
+  json,
+  ./exceptions
 
 
 type
@@ -84,6 +89,14 @@ type
     Secondary = "secondary",
     Negative = "negative",
     Positive = "positive"
+  TemplateType* {.pure.} = enum
+    Carousel
+  CarouselElementActionType* {.pure.} = enum
+    OpenLink,
+    OpenPhoto
+  ContentSourceType* {.pure.} = enum
+    Message,
+    Url
   Career* = object
     group_id*: int
     company*: string
@@ -338,6 +351,40 @@ type
     one_time*: bool
     inline*: bool
     buttons*: seq[KeyboardButton]
+  CarouselElementAction* = object
+    case `type`*: CarouselElementActionType
+    of OpenLink:
+      link*: string
+    of OpenPhoto:
+      discard
+  CarouselElement* = object
+    title*: string  ## Заголовок, максимум 80 символов.
+    description*: string  ## Подзаголовок, максимум 80 символов.
+    photo_id*: string  ## ID изображения, которое надо прикрепить.
+                       ## Пропорции изображения: 13/8;
+                       ## Минимальный размер: 221х136;
+                       ## Загрузка изображений для карусели происходит также,
+                       ## как и загрузка изображений ботами в сообщениях.
+    action*: CarouselElementAction
+    buttons*: seq[KeyboardButton]  ## Один элемент карусели может содержать не больше 3-х кнопок.
+  Template* = object
+    case `type`*: TemplateType
+    of TemplateType.Carousel:
+      elements*: seq[CarouselElement]
+  ForwardBotMessage* = object
+    owner_id*: int
+    peer_id*: int
+    conversation_message_ids*: seq[int]
+    message_ids*: seq[int]
+    is_reply: bool
+  ContentSource* = object
+    case `type`*: ContentSourceType
+    of ContentSourceType.Message:
+      owner_id*: int
+      peer_id*: int
+      conversation_message_id*: int
+    of ContentSourceType.Url:
+      url*: string
   MessageActionPhoto* = object
     photo_50*: string
     photo_100*: string
@@ -639,6 +686,88 @@ type
     peer_ids*: seq[int]
 
 
+# ---=== Constructors ===--- #
+
+proc initKeyboard*(one_time, inline: bool, buttons: seq[KeyboardButton] = @[]): Keyboard =
+  Keyboard(one_time: one_time, inline: inline, buttons: buttons)
+
+
+macro buildKeyboard*(one_time, inline: static[bool], body: untyped) =
+  ## Builds keyboard
+  ## 
+  ## ## Example
+  ## 
+  ## ```nim
+  ## buildKeyboard true, true:
+  ##   line:  # line of buttons
+  ##     text:  # type of button. Can be "text", "open_link", "open_app", "location", "vkpay" or "callback"
+  ##       label = "Button text here"
+  ##       payload = "Hello!"
+  ##       color = ButtonColor.Primary
+  ## ```
+  ## 
+  var
+    lineCount = 0
+    btns = newCall("@", newNimNode(nnkBracket))
+  for s in body:
+    if s.kind in nnkCallKinds and s[0] == ident"line" and s[1].kind == nnkStmtList:
+      var buttonsCount = 0
+      # Check button lines
+      if lineCount > 10:
+        echo fmt"Lines of buttons more then 10!"
+        echo lineInfo(s)
+        raise newException(VkException, fmt"Lines of buttons more then 10!")
+      # Iterate over buttons
+      for btn in s[1]:
+        if btn.kind in nnkCallKinds and btn[0].kind == nnkIdent and btn[1].kind == nnkStmtList:
+          var
+            actionData = newNimNode(nnkObjConstr).add(ident"KeyboardAction")
+            btnData = newNimNode(nnkObjConstr).add(ident"KeyboardButton")
+            clr = newDotExpr(ident"ButtonColor", ident"Primary")
+          for btnField in btn[1]:
+            if btnField.kind == nnkAsgn:
+              # keyboard button action
+              if btnField[0] == ident"color":
+                clr = btnField[1]
+              else:
+                actionData.add(newNimNode(nnkExprColonExpr).add(
+                  btnField[0],
+                  btnField[1]
+                ))
+          if buttonsCount > 5:
+            echo fmt"Buttons more then 5 in one line!"
+            echo lineInfo(btn)
+            raise newException(VkException, fmt"Buttons more then 5 in one line!")
+          if ($btn[0]).toLower() in ["text", "open_link", "open_app", "location", "vkpay", "callback"]:
+            # Button type
+            btnData.add(newNimNode(nnkExprColonExpr).add(
+              newNimNode(nnkAccQuoted).add(ident"type"), newLit($btn[0])
+            ))
+            # Button action
+            btnData.add(newNimNode(nnkExprColonExpr).add(ident"action", actionData))
+            # Button color
+            btnData.add(newNimNode(nnkExprColonExpr).add(ident"color", clr))
+            btns[1].add(btnData)
+            inc buttonsCount
+            continue
+        echo fmt"Invalid type of button:"
+        echo lineInfo(btn)
+        raise newException(VkException, fmt"Invalid type of button:")
+      # increase line counter
+      inc lineCount
+  result = newNimNode(nnkObjConstr).add(
+    ident"Keyboard",
+    newNimNode(nnkExprColonExpr).add(ident"one_time", newLit(one_time)),
+    newNimNode(nnkExprColonExpr).add(ident"inline", newLit(inline)),
+    newNimNode(nnkExprColonExpr).add(ident"buttons", btns),
+  )
+  echo result.toStrLit
+
+
+macro buildKeyboard*(body: untyped): untyped =
+  newCall("buildKeyboard", newLit(false), newLit(false), body)
+
+
 # ---=== Hooks ===--- #
 
 proc enumHook*(s: string, v: var SearchHintType) =
@@ -646,6 +775,40 @@ proc enumHook*(s: string, v: var SearchHintType) =
   of "group": SearchHintType.Group
   of "profile": SearchHintType.Profile
   else: SearchHintType.Profile
+
+proc enumHook*(s: string, v: var ContentSourceType) =
+  v = case s:
+  of "message": ContentSourceType.Message
+  of "url": ContentSourceType.Url
+  else: ContentSourceType.Url
+
+
+proc enumHook*(s: string, v: var TemplateType) =
+  v = case s:
+  of "carousel": TemplateType.Carousel
+  else: TemplateType.Carousel
+
+
+proc enumHook*(s: string, v: var RelativeType) =
+  v = case s:
+  of "child":
+    RelativeType.Child
+  of "sibling":
+    RelativeType.Sibling
+  of "parent":
+    RelativeType.Parent
+  of "grandparent":
+    RelativeType.GrandParent
+  of "grandchild":
+    RelativeType.GrandChild
+  else: RelativeType.Parent
+
+
+proc enumHook*(s: string, v: var CarouselElementActionType) =
+  v = case s:
+  of "open_link": CarouselElementActionType.OpenLink
+  of "open_photo": CarouselElementActionType.OpenPhoto
+  else: CarouselElementActionType.OpenLink
 
 
 proc enumHook*(s: string, v: var Gender) =
@@ -666,3 +829,126 @@ proc enumHook*(s: string, v: var Platform) =
   of "6": Windows10
   of "7": FullVersion
   else: FullVersion
+
+
+proc enumHook*(s: string, v: var ButtonColor) =
+  v = case s:
+  of "primary":
+    ButtonColor.Primary
+  of "secondary":
+    ButtonColor.Secondary
+  of "negative":
+    ButtonColor.Negative
+  of "positive":
+    ButtonColor.Positive
+  else: ButtonColor.Primary
+
+proc enumHook*(s: string, v: var ReportType) =
+  v = case s:
+  of "porn":
+    ReportType.rPorn
+  of "spam":
+    ReportType.rSpam
+  of "insult":
+    ReportType.rInsult
+  of "adverisement":
+    ReportType.rAdvertisement
+  else: ReportType.rPorn
+
+proc enumHook*(s: string, v: var SearchUserSort) =
+  v = case s:
+  of "1":
+    SearchUserSort.RegDate
+  of "0":
+    SearchUserSort.Popularity
+  else: SearchUserSort.RegDate
+
+proc enumHook*(s: string, v: var MaritalStatus) =
+  v = case s:
+  of "0":
+    MaritalStatus.NotMatter
+  of "1":
+    MaritalStatus.NotMarried
+  of "2":
+    MaritalStatus.Dating
+  of "3":
+    MaritalStatus.Engaged
+  of "4":
+    MaritalStatus.Married
+  of "5":
+    MaritalStatus.Difficult
+  of "6":
+    MaritalStatus.ActiveSearch
+  of "7":
+    MaritalStatus.InLove
+  of "8":
+    MaritalStatus.CivilMarriage
+  else: MaritalStatus.NotMatter
+
+proc enumHook*(s: string, v: var OccupationType) =
+  v = case s:
+  of "work":
+    OccupationType.Work
+  of "school":
+    OccupationType.School
+  of "university":
+    OccupationType.University
+  else: OccupationType.Work
+
+proc enumHook*(s: string, v: var Political) =
+  v = case s:
+  of "1":
+    Political.Communist
+  of "2":
+    Political.Socialist
+  of "3":
+    Political.Moderate
+  of "4":
+    Political.Liberal
+  of "5":
+    Political.Conservative
+  of "6":
+    Political.Monorchical
+  of "7":
+    Political.Ultraconservative
+  of "8":
+    Political.Indifferent
+  of "9":
+    Political.Libertarian
+  else: Political.Communist
+
+proc enumHook*(s: string, v: var PeopleMain) =
+  v = case s:
+  of "1":
+    PeopleMain.IntelligenceAndCreativity
+  of "2":
+    PeopleMain.KiddnessAndHonesty
+  of "3":
+    PeopleMain.BeautyAndHealth
+  of "4":
+    PeopleMain.PowerAndWealth
+  of "5":
+    PeopleMain.CourageAndPerseverance
+  of "6":
+    PeopleMain.HumorAndLoveOfLife
+  else: PeopleMain.IntelligenceAndCreativity
+
+proc enumHook*(s: string, v: var LifeMain) =
+  v = case s:
+  of "1":
+    LifeMain.Family
+  of "2":
+    LifeMain.Money
+  of "3":
+    LifeMain.Recreation
+  of "4":
+    LifeMain.Research
+  of "5":
+    LifeMain.Improving
+  of "6":
+    LifeMain.SelfDevelopment
+  of "7":
+    LifeMain.Beauty
+  of "8":
+    LifeMain.Influence
+  else: LifeMain.Family
