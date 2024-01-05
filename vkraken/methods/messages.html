@@ -201,14 +201,14 @@
 <p>Метод можно вызвать с ключом доступа пользователя, полученным в Standalone-приложении через Implicit Flow.</p>
 <p>Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">chat_id</span></span></tt> -- Идентификатор беседы. (Обязательный параметр)</li>
+<h3><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">chat_id</span></span></tt> -- Идентификатор беседы. (Обязательный параметр)</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">user_id</span></span></tt> -- Идентификатор пользователя, которого необходимо включить в беседу. (Обязательный параметр)</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">visible_messages_count</span></span></tt> -- Количество видимых сообщений в чате. (Обязательный параметр)</li>
 </ul>
 
-<h2><a class="toc-backref" id="result" href="#result">Result</a></h2><p>После успешного выполнения возвращает <tt class="docutils literal"><span class="pre"><span class="DecNumber">1</span></span></tt>.</p>
+<h3><a class="toc-backref" id="result" href="#result">Result</a></h3><p>После успешного выполнения возвращает <tt class="docutils literal"><span class="pre"><span class="DecNumber">1</span></span></tt>.</p>
 
-<h2><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="DecNumber">103</span></span></tt>: Out of limits</li>
+<h3><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="DecNumber">103</span></span></tt>: Out of limits</li>
 <li><tt class="docutils literal"><span class="pre"><span class="DecNumber">925</span></span></tt>: You are not an admin of this chat</li>
 <li><tt class="docutils literal"><span class="pre"><span class="DecNumber">932</span></span></tt>: Your community can't interact with this peer</li>
 <li><tt class="docutils literal"><span class="pre"><span class="DecNumber">936</span></span></tt>: Contact not found</li>
@@ -237,13 +237,13 @@
 <p>Этот метод можно вызвать с ключом доступа пользователя, полученным в Standalone-приложении через Implicit Flow.</p>
 <p>Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">group_id</span></span></tt> -- Идентификатор сообщества. (Обязательный параметр)</li>
+<h3><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">group_id</span></span></tt> -- Идентификатор сообщества. (Обязательный параметр)</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">key</span></span></tt> -- Произвольная строка для идентификации пользователя. Значение будет возвращено в событии message_allow Callback API. Макс. длина = 256</li>
 </ul>
 
-<h2><a class="toc-backref" id="result" href="#result">Result</a></h2><p>После успешного выполнения возвращает <tt class="docutils literal"><span class="pre"><span class="DecNumber">1</span></span></tt>.</p>
+<h3><a class="toc-backref" id="result" href="#result">Result</a></h3><p>После успешного выполнения возвращает <tt class="docutils literal"><span class="pre"><span class="DecNumber">1</span></span></tt>.</p>
 
-<h2><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h2><ul class="simple"><li>943 -- Cannot use this intent</li>
+<h3><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h3><ul class="simple"><li>943 -- Cannot use this intent</li>
 </ul>
 
     
@@ -263,13 +263,13 @@
 <p>Метод можно вызвать с ключом доступа пользователя, полученным в Standalone-приложении через Implicit Flow. Требуются права доступа: messages.</p>
 <p>Метод также можно вызвать с ключом доступа сообщества. Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="parameters" href="#parameters">Parameters</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">user_ids</span></span></tt> -- Идентификаторы пользователей, которые будут участвовать в чате. Используйте запятую в качестве разделителя. Указанные пользователи должны находиться в списке друзей текущего пользователя.</li>
+<h3><a class="toc-backref" id="parameters" href="#parameters">Parameters</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">user_ids</span></span></tt> -- Идентификаторы пользователей, которые будут участвовать в чате. Используйте запятую в качестве разделителя. Указанные пользователи должны находиться в списке друзей текущего пользователя.</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">title</span></span></tt> -- Название чата.</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">group_id</span></span></tt> -- Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).</li>
 </ul>
 <p>Обратите внимание, что при создании чата с токеном сообщества, чат не будет отображаться в интерфейсе сообщества. Кроме того, в таком чате нельзя пригласить участников при создании. Добавить их можно позже с помощью API-метода <tt class="docutils literal"><span class="pre"><span class="Identifier">messages</span><span class="Operator">.</span><span class="Identifier">getInviteLink</span></span></tt>.</p>
 
-<h2><a class="toc-backref" id="result" href="#result">Result</a></h2><p>После успешного выполнения возвращает идентификатор созданного чата (<tt class="docutils literal"><span class="pre"><span class="Identifier">chat_id</span></span></tt>). </p>
+<h3><a class="toc-backref" id="result" href="#result">Result</a></h3><p>После успешного выполнения возвращает идентификатор созданного чата (<tt class="docutils literal"><span class="pre"><span class="Identifier">chat_id</span></span></tt>). </p>
 
     
   </dd>
@@ -288,7 +288,7 @@
     <p>Удаляет сообщение.</p>
 <p>Метод доступен при использовании ключа доступа пользователя, полученного в Standalone-приложении через Implicit Flow. Требуются права доступа: messages. Метод также доступен при использовании ключа доступа сообщества. Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="parameters" href="#parameters">Parameters</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">message_ids</span></span></tt> -- Список идентификаторов сообщений, разделённых через запятую.</li>
+<h3><a class="toc-backref" id="parameters" href="#parameters">Parameters</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">message_ids</span></span></tt> -- Список идентификаторов сообщений, разделённых через запятую.</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">spam</span></span></tt> -- Пометить сообщения как спам (доступен только с ключом доступа пользователя).</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">reason</span></span></tt> -- Идентификатор причины блокировки (integer).</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">group_id</span></span></tt> -- Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).</li>
@@ -297,9 +297,9 @@
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">cmids</span></span></tt> -- Идентификаторы сообщения в беседе, разделённые через запятую.</li>
 </ul>
 
-<h2><a class="toc-backref" id="result" href="#result">Result</a></h2><p>После успешного выполнения возвращает <tt class="docutils literal"><span class="pre"><span class="DecNumber">1</span></span></tt> для каждого удалённого сообщения.</p>
+<h3><a class="toc-backref" id="result" href="#result">Result</a></h3><p>После успешного выполнения возвращает <tt class="docutils literal"><span class="pre"><span class="DecNumber">1</span></span></tt> для каждого удалённого сообщения.</p>
 
-<h2><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h2><p>924 - Can't delete this message for everybody </p>
+<h3><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h3><p>924 - Can't delete this message for everybody </p>
 
     
   </dd>
@@ -317,16 +317,16 @@
 <p>Этот метод может быть вызван с ключом доступа пользователя, полученным в Standalone-приложении через Implicit Flow. Требуются права доступа: messages.</p>
 <p>Этот метод может быть вызван с ключом доступа сообщества. Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">chat_id</span></span></tt> -- Идентификатор беседы. (Обязательный параметр)</li>
+<h3><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">chat_id</span></span></tt> -- Идентификатор беседы. (Обязательный параметр)</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">group_id</span></span></tt> -- Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).</li>
 </ul>
 
-<h2><a class="toc-backref" id="result" href="#result">Result</a></h2><p>После успешного выполнения возвращает объект, содержащий следующие поля:</p>
+<h3><a class="toc-backref" id="result" href="#result">Result</a></h3><p>После успешного выполнения возвращает объект, содержащий следующие поля:</p>
 <ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">message_id</span></span></tt> — идентификатор отправленного системного сообщения;</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">chat</span></span></tt> — объект мультидиалога.</li>
 </ul>
 
-<h2><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h2><ul class="simple"><li>925: You are not an admin of this chat.</li>
+<h3><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h3><ul class="simple"><li>925: You are not an admin of this chat.</li>
 <li>945: Chat was disabled.</li>
 </ul>
 
@@ -347,14 +347,14 @@
 <p>Этот метод можно вызвать с ключом доступа пользователя, полученным в Standalone-приложении через Implicit Flow. Требуются права доступа: messages.</p>
 <p>Этот метод можно вызвать с ключом доступа сообщества. Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">user_id</span></span></tt> -- Идентификатор пользователя. Если требуется очистить историю беседы, используйте <tt class="docutils literal"><span class="pre"><span class="Identifier">peer_id</span></span></tt>.</li>
+<h3><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">user_id</span></span></tt> -- Идентификатор пользователя. Если требуется очистить историю беседы, используйте <tt class="docutils literal"><span class="pre"><span class="Identifier">peer_id</span></span></tt>.</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">peer_id</span></span></tt> -- Идентификатор назначения. Для групповой беседы: <tt class="docutils literal"><span class="pre"><span class="DecNumber">2000000000</span> <span class="Operator">+</span> <span class="Identifier">id</span> <span class="Identifier">беседы</span></span></tt>. Для сообщества: <tt class="docutils literal"><span class="pre"><span class="Operator">-</span><span class="Identifier">id</span> <span class="Identifier">сообщества</span></span></tt>. <em>Разрешён с версии 5.38</em></li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">offset</span></span></tt> -- Начиная с какого сообщения нужно удалить переписку (по умолчанию удаляются все сообщения начиная с первого). <em>Запрещён с версии 5.100</em></li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">count</span></span></tt> -- Сколько сообщений нужно удалить. Обратите внимание, что на метод наложено ограничение, за один вызов нельзя удалить больше <tt class="docutils literal"><span class="pre"><span class="DecNumber">10000</span></span></tt> сообщений, поэтому если сообщений в переписке больше — метод нужно вызывать несколько раз. <em>Запрещён с версии 5.100</em></li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">group_id</span></span></tt> -- Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).</li>
 </ul>
 
-<h2><a class="toc-backref" id="result" href="#result">Result</a></h2><p>После успешного выполнения возвращает поле <tt class="docutils literal"><span class="pre"><span class="Identifier">last_deleted_id</span></span></tt>, содержащее идентификатор последнего удалённого сообщения в переписке. </p>
+<h3><a class="toc-backref" id="result" href="#result">Result</a></h3><p>После успешного выполнения возвращает поле <tt class="docutils literal"><span class="pre"><span class="Identifier">last_deleted_id</span></span></tt>, содержащее идентификатор последнего удалённого сообщения в переписке. </p>
 
     
   </dd>
@@ -372,7 +372,7 @@
 <p>Этот метод можно вызвать с ключом доступа пользователя, полученным в Standalone-приложении через Implicit Flow. Требуются права доступа: messages.</p>
 <p>Этот метод можно вызвать с ключом доступа сообщества. Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="parameters" href="#parameters">Parameters</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">peer_id</span></span></tt> -- Идентификатор беседы:<ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">user_id</span></span></tt> — для личных чатов.</li>
+<h3><a class="toc-backref" id="parameters" href="#parameters">Parameters</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">peer_id</span></span></tt> -- Идентификатор беседы:<ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">user_id</span></span></tt> — для личных чатов.</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">group_id</span></span></tt> — для чатов с сообществом.</li>
 <li><tt class="docutils literal"><span class="pre"><span class="DecNumber">2</span> <span class="DecNumber">000</span> <span class="DecNumber">000</span> <span class="DecNumber">000</span> <span class="Operator">+</span> <span class="Identifier">id_чата</span></span></tt> — для чатов.</li>
 </ul>
@@ -394,12 +394,12 @@
   <dd>
     
     Запрещает отправку сообщений от сообщества текущему пользователю.
-<h2><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">group_id</span></span></tt> -- Идентификатор сообщества. (Обязательный параметр)</li>
+<h3><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">group_id</span></span></tt> -- Идентификатор сообщества. (Обязательный параметр)</li>
 </ul>
 
-<h2><a class="toc-backref" id="permissions" href="#permissions">Permissions</a></h2><p>Требуются права доступа: messages.</p>
+<h3><a class="toc-backref" id="permissions" href="#permissions">Permissions</a></h3><p>Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="result" href="#result">Result</a></h2><p>После успешного выполнения возвращает 1. </p>
+<h3><a class="toc-backref" id="result" href="#result">Result</a></h3><p>После успешного выполнения возвращает 1. </p>
 
     
   </dd>
@@ -423,7 +423,7 @@
 <p>Метод можно вызвать с ключом доступа пользователя, полученным в Standalone-приложении через Implicit Flow. Требуются права доступа: messages.</p>
 <p>Метод можно вызвать с ключом доступа сообщества. Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="parameters" href="#parameters">Parameters</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">peer_id</span></span></tt> -- Идентификатор назначения.<ul class="simple"><li>Для пользователя: <tt class="docutils literal"><span class="pre"><span class="Identifier">id</span> <span class="Identifier">пользователя</span></span></tt>.</li>
+<h3><a class="toc-backref" id="parameters" href="#parameters">Parameters</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">peer_id</span></span></tt> -- Идентификатор назначения.<ul class="simple"><li>Для пользователя: <tt class="docutils literal"><span class="pre"><span class="Identifier">id</span> <span class="Identifier">пользователя</span></span></tt>.</li>
 <li>Для групповой беседы: <tt class="docutils literal"><span class="pre"><span class="DecNumber">2000000000</span> <span class="Operator">+</span> <span class="Identifier">id</span> <span class="Identifier">беседы</span></span></tt>.</li>
 <li>Для сообщества: <tt class="docutils literal"><span class="pre"><span class="Operator">-</span><span class="Identifier">id</span> <span class="Identifier">сообщества</span></span></tt>.</li>
 </ul>
@@ -449,9 +449,9 @@
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">keyboard</span></span></tt> -- Объект, описывающий клавиатуру бота (text).</li>
 </ul>
 
-<h2><a class="toc-backref" id="result" href="#result">Result</a></h2><p>После успешного выполнения возвращает <tt class="docutils literal"><span class="pre"><span class="DecNumber">1</span></span></tt>.</p>
+<h3><a class="toc-backref" id="result" href="#result">Result</a></h3><p>После успешного выполнения возвращает <tt class="docutils literal"><span class="pre"><span class="DecNumber">1</span></span></tt>.</p>
 
-<h2><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="DecNumber">901</span></span></tt>: Can't send messages for users without permission</li>
+<h3><a class="toc-backref" id="error-codes" href="#error-codes">Error Codes</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="DecNumber">901</span></span></tt>: Can't send messages for users without permission</li>
 <li><tt class="docutils literal"><span class="pre"><span class="DecNumber">909</span></span></tt>: Can't edit this message, because it's too old</li>
 <li><tt class="docutils literal"><span class="pre"><span class="DecNumber">910</span></span></tt>: Can't sent this message, because it's too big</li>
 <li><tt class="docutils literal"><span class="pre"><span class="DecNumber">911</span></span></tt>: Keyboard format is invalid</li>
@@ -491,7 +491,7 @@
 <p>Этот метод можно вызвать с ключом доступа пользователя, полученным в Standalone-приложении через Implicit Flow. Требуются права доступа: messages.</p>
 <p>Этот метод можно вызвать с ключом доступа сообщества. Требуются права доступа: messages.</p>
 
-<h2><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h2><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">user_id</span></span></tt> -- Обязательный параметр. Идентификатор пользователя, которому отправляется сообщение.</li>
+<h3><a class="toc-backref" id="arguments" href="#arguments">Arguments</a></h3><ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="Identifier">user_id</span></span></tt> -- Обязательный параметр. Идентификатор пользователя, которому отправляется сообщение.</li>
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">random_id</span></span></tt> -- Обязательный параметр. Уникальный (в привязке к идентификатору приложения и идентификатору отправителя) идентификатор, предназначенный для предотвращения повторной отправки одного и того же сообщения. Сохраняется вместе с сообщением и доступен в истории сообщений. Возможные значения:<ul class="simple"><li><tt class="docutils literal"><span class="pre"><span class="DecNumber">0</span></span></tt> — проверка на уникальность не нужна.</li>
 <li>Любое другое число в пределах <tt class="docutils literal"><span class="pre"><span class="Identifier">int32</span></span></tt> — проверка на уникальность нужна.</li>
 </ul>
@@ -561,7 +561,7 @@
 <li><tt class="docutils literal"><span class="pre"><span class="Identifier">subscribe_id</span></span></tt> -- Необязательный параметр. Число, которое будет использоваться для работы с интентами в будущем.</li>
 </ul>
 
-<h2><a class="toc-backref" id="result" href="#result">Result</a></h2><p>Метод возвращает идентификатор отправленного сообщения. Если передан параметр peer_ids, метод возвращает массив объектов. Поля объекта:</p>
+<h3><a class="toc-backref" id="result" href="#result">Result</a></h3><p>Метод возвращает идентификатор отправленного сообщения. Если передан параметр peer_ids, метод возвращает массив объектов. Поля объекта:</p>
 <table border="1" class="docutils"><tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
 <tr><td>peer_id</td><td>integer</td><td>Идентификатор назначения.</td></tr>
 <tr><td>message_id</td><td>integer</td><td>Идентификатор сообщения.</td></tr>
@@ -615,7 +615,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-01-05 01:31:44 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-01-05 01:33:25 UTC</small>
       </div>
     </div>
   </div>
