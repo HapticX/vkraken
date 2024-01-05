@@ -1,6 +1,7 @@
 import
   asyncdispatch,
   httpclient,
+  strformat,
   macros,
   json,
   uri,
@@ -21,23 +22,29 @@ const
 
 
 type
-  VkClient* = object
+  VkBotHandler* = object
+    update_type*: string
+    cb*: proc(event: JsonNode): Future[void] {.async.}
+  VkClient* = ref object
     token*: string
     lang*: string
     version*: string
+    group_id*: int
     client: AsyncHttpClient
+    handlers*: seq[VkBotHandler]
   # just some syntax sugar ~
   MethodsRoot* = object of RootObj
     vk*: VkClient
+  GroupsMethods* = object of MethodsRoot ## object for groups methods
   MessagesMethods* = object of MethodsRoot  # object for search methods
   UsersMethods* = object of MethodsRoot  # object for users methods
   SearchMethods* = object of MethodsRoot  # object for search methods
 
 
-proc initVk*(accessToken: string, version: float = 5.199, lang: string = ""): VkClient =
+proc initVk*(accessToken: string, group_id: int = 0, version: float = 5.199, lang: string = ""): VkClient =
   VkClient(
     token: accessToken, lang: lang, version: $version,
-    client: newAsyncHttpClient(headers = {
+    group_id: group_id, client: newAsyncHttpClient(headers = {
       "Authorization": "Bearer " & accessToken
     }.newHttpHeaders)
   )
@@ -162,16 +169,43 @@ proc callVkMethod*(self: VkClient, name: string, arguments: JsonNode): Future[Js
   return response.response
 
 
-template methods(funcname, obj: untyped): untyped =
-  proc `funcname`*(self: VkClient): `obj` = `obj`(vk: self)
+macro methods(funcname, obj: untyped): untyped =
+  result = newProc(
+    postfix(funcname, "*"),
+    @[obj, newIdentDefs(ident"self", ident"VkClient")],
+    newStmtList(
+      newNimNode(nnkCommentStmt).add(
+        newLit(
+          fmt"Just help procedure for `{funcname}` methods"
+        )
+      ),
+      newNimNode(nnkObjConstr).add(obj, newNimNode(nnkExprColonExpr).add(ident"vk", ident"self"))
+    )
+  )
 
 
+methods(groups, GroupsMethods)
 methods(messages, MessagesMethods)
 methods(users, UsersMethods)
 methods(search, SearchMethods)
 
 
 macro `~`*(self: VkClient, call: untyped): untyped =
+  ## Sugar syntax for calling any VK API methods
+  ## 
+  ## 
+  ## ### Examples
+  ## 
+  ## ```nim
+  ## import
+  ##   asyncdispatch,
+  ##   vkraken
+  ## 
+  ## var bot = initVk("bot token ...")
+  ## 
+  ## echo waitFor bot~users.get(user_ids = "1,2,3")
+  ## ```
+  ## 
   result = newCall(
     "callVkMethod",
     self,

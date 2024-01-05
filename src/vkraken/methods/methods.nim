@@ -1,7 +1,7 @@
 import
   ./[
-    messages, users, search
+    groups, messages, users, search
   ]
 
 export
-  messages, users, search
+  groups, messages, users, search

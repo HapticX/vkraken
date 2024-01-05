@@ -101,6 +101,14 @@ type
     All,
     Members,
     Admins
+  OrderStatus* {.pure, size: sizeof(int8).} = enum
+    NewOrder = 0,
+    Agreed = 1,
+    Assembled = 2,
+    Delivered = 3,
+    Completed = 4,
+    Canceled = 5,
+    Removed = 6
   Career* = object
     group_id*: int
     company*: string
@@ -688,6 +696,10 @@ type
   CreatedChat* = object
     chat_id*: int
     peer_ids*: seq[int]
+  LongPollServer* = object
+    key*: string
+    server*: string
+    ts*: string
   WikiPage* = object
     id*: int
     group_id*: int
@@ -758,6 +770,36 @@ type
     is_hidden*: bool
     photo*: Photo
     count*: int
+  PropertyValue* = object
+    variant_id*: int
+    variant_name*: string
+    property_name*: string
+  Delivery* = object
+    address*: string
+    `type`*: string
+    track_number*: string
+    track_link*: string
+    delivery_point*: JsonNode
+  Recipient* = object
+    name*: string
+    phone*: string
+    display_text*: string
+  Order* = object
+    id*: int
+    group_id*: int
+    user_id*: int
+    date*: int
+    variants_grouping_id*: int
+    is_main_variant*: bool
+    property_values*: seq[PropertyValue]
+    cart_quantity*: int
+    status*: OrderStatus
+    total_price*: Price
+    display_order_id*: string
+    comment*: string
+    preview_order_items*: seq[Product]
+    delivery*: Delivery
+    recipient*: Recipient
 
 
 # ---=== Constructors ===--- #
@@ -1026,6 +1068,24 @@ proc enumHook*(s: string, v: var LifeMain) =
   of "8":
     LifeMain.Influence
   else: LifeMain.Family
+
+proc enumHook*(s: string, v: var OrderStatus) =
+  v = case s:
+  of "0":
+    OrderStatus.NewOrder
+  of "1":
+    OrderStatus.Agreed
+  of "2":
+    OrderStatus.Assembled
+  of "3":
+    OrderStatus.Delivered
+  of "4":
+    OrderStatus.Completed
+  of "5":
+    OrderStatus.Canceled
+  of "6":
+    OrderStatus.Removed
+  else: OrderStatus.NewOrder
 
 proc enumHook*(s: string, v: var WhoCanWiki) =
   v = case s:
