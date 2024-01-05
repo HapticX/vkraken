@@ -14,8 +14,8 @@
 ## 
 ## ### Methods
 ## - [messages](vkraken/methods/messages)
-## - [messages](vkraken/methods/users)
-## - [messages](vkraken/methods/search)
+## - [users](vkraken/methods/users)
+## - [search](vkraken/methods/search)
 ## 
 
 when not defined(ssl):
