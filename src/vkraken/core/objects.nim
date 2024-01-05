@@ -97,6 +97,10 @@ type
   ContentSourceType* {.pure.} = enum
     Message,
     Url
+  WhoCanWiki* {.pure.} = enum
+    All,
+    Members,
+    Admins
   Career* = object
     group_id*: int
     company*: string
@@ -684,6 +688,76 @@ type
   CreatedChat* = object
     chat_id*: int
     peer_ids*: seq[int]
+  WikiPage* = object
+    id*: int
+    group_id*: int
+    creator_id*: int
+    title*: string
+    current_user_can_edit*: int
+    current_user_can_edit_access*: int
+    who_can_view*: WhoCanWiki
+    who_can_edit*: WhoCanWiki
+    edited*: int
+    created*: int
+    editor_id*: int
+    views*: int
+    parent*: string
+    parent2*: string
+    source*: string
+    html*: string
+    view_url*: string
+  Price* = object
+    amount*: string
+    currency*: Wallet
+    old_amount*: string
+    text*: string
+  Dimensions* = object
+    width*: int
+    height*: int
+    length*: int
+  CategorySection* = object
+    id*: int
+    name*: string
+  Category* = object
+    id*: int
+    name*: string
+    section*: CategorySection
+  RejectInfo* = object
+    title*: string
+    description*: string
+    buttons*: JsonNode
+    moderation_status*: int
+    info_link*: string
+    white_to_support_link*: string
+  Product* = object
+    id*: int
+    owner_id*: int
+    title*: string
+    description*: string
+    price*: Price
+    dimensions*: Dimensions
+    weight*: int
+    category*: Category
+    thumb_photo*: string
+    date*: int
+    availability*: int
+    is_favorite*: bool
+    sku*: string
+    reject_info*: RejectInfo
+    photos*: seq[Photo]
+    can_comment*: int
+    can_repost*: int
+    likes*: LikesInfo
+    url*: string
+    button_title*: string
+  ProductSelection* = object
+    id*: int
+    owner_id*: int
+    title*: string
+    is_main*: bool
+    is_hidden*: bool
+    photo*: Photo
+    count*: int
 
 
 # ---=== Constructors ===--- #
@@ -952,3 +1026,13 @@ proc enumHook*(s: string, v: var LifeMain) =
   of "8":
     LifeMain.Influence
   else: LifeMain.Family
+
+proc enumHook*(s: string, v: var WhoCanWiki) =
+  v = case s:
+  of "2":
+    WhoCanWiki.All
+  of "1":
+    WhoCanWiki.Members
+  of "0":
+    WhoCanWiki.Admins
+  else: WhoCanWiki.Admins
