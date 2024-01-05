@@ -47,22 +47,29 @@
       </select>
     </div>
     <ul class="simple simple-toc" id="toc-list">
-  <li>
+  <ul class="simple"><li><a class="reference" id="examples_toc" href="#examples">Examples</a></li>
+</ul><li>
   <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
 </li>
 <li>
   <details open>
     <summary><a class="reference reference-toplevel" href="#7" id="57">Types</a></summary>
     <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#MessagesMethods" title="MessagesMethods = object of MethodsRoot">MessagesMethods</a></li>
+      <li><a class="reference" href="#GroupsMethods" title="GroupsMethods = object of MethodsRoot">GroupsMethods</a></li>
+<li><a class="reference" href="#MessagesMethods" title="MessagesMethods = object of MethodsRoot">MessagesMethods</a></li>
 <li><a class="reference" href="#MethodsRoot" title="MethodsRoot = object of RootObj
   vk*: VkClient">MethodsRoot</a></li>
 <li><a class="reference" href="#SearchMethods" title="SearchMethods = object of MethodsRoot">SearchMethods</a></li>
 <li><a class="reference" href="#UsersMethods" title="UsersMethods = object of MethodsRoot">UsersMethods</a></li>
-<li><a class="reference" href="#VkClient" title="VkClient = object
+<li><a class="reference" href="#VkBotHandler" title="VkBotHandler = object
+  update_type*: string
+  cb*: proc (event: JsonNode): Future[void] {.async.}">VkBotHandler</a></li>
+<li><a class="reference" href="#VkClient" title="VkClient = ref object
   token*: string
   lang*: string
-  version*: string">VkClient</a></li>
+  version*: string
+  group_id*: int
+  handlers*: seq[VkBotHandler]">VkClient</a></li>
 
     </ul>
   </details>
@@ -85,12 +92,18 @@
   <li><a class="reference" href="#callVkMethod%2CVkClient%2Cstring%2CJsonNode" title="callVkMethod(self: VkClient; name: string; arguments: JsonNode): Future[JsonNode]">callVkMethod(self: VkClient; name: string; arguments: JsonNode): Future[JsonNode]</a></li>
 
 </ul>
+<ul class="simple nested-toc-section">groups
+  <li><a class="reference" href="#groups%2CVkClient" title="groups(self: VkClient): GroupsMethods">groups(self: VkClient): GroupsMethods</a></li>
+
+</ul>
 <ul class="simple nested-toc-section">initVk
-  <li><a class="reference" href="#initVk%2Cstring%2Cfloat%2Cstring" title="initVk(accessToken: string; version: float = 5.199; lang: string = &quot;&quot;): VkClient">initVk(accessToken: string; version: float = 5.199; lang: string = &quot;&quot;): VkClient</a></li>
+  <li><a class="reference" href="#initVk%2Cstring%2Cint%2Cfloat%2Cstring" title="initVk(accessToken: string; group_id: int = 0; version: float = 5.199;
+       lang: string = &quot;&quot;): VkClient">initVk(accessToken: string; group_id: int = 0; version: float = 5.199;
+       lang: string = &quot;&quot;): VkClient</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">messages
-  <li><a class="reference" href="#messages%2CVkClient" title="messages(self`gensym262: VkClient): MessagesMethods">messages(self`gensym262: VkClient): MessagesMethods</a></li>
+  <li><a class="reference" href="#messages%2CVkClient" title="messages(self: VkClient): MessagesMethods">messages(self: VkClient): MessagesMethods</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">removeEmptyArgs
@@ -98,11 +111,11 @@
 
 </ul>
 <ul class="simple nested-toc-section">search
-  <li><a class="reference" href="#search%2CVkClient" title="search(self`gensym264: VkClient): SearchMethods">search(self`gensym264: VkClient): SearchMethods</a></li>
+  <li><a class="reference" href="#search%2CVkClient" title="search(self: VkClient): SearchMethods">search(self: VkClient): SearchMethods</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">users
-  <li><a class="reference" href="#users%2CVkClient" title="users(self`gensym263: VkClient): UsersMethods">users(self`gensym263: VkClient): UsersMethods</a></li>
+  <li><a class="reference" href="#users%2CVkClient" title="users(self: VkClient): UsersMethods">users(self: VkClient): UsersMethods</a></li>
 
 </ul>
 
@@ -139,7 +152,15 @@
 <div class="section" id="7">
   <h1><a class="toc-backref" href="#7">Types</a></h1>
   <dl class="item">
-    <div id="MessagesMethods">
+    <div id="GroupsMethods">
+  <dt><pre><a href="api.html#GroupsMethods"><span class="Identifier">GroupsMethods</span></a> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="api.html#MethodsRoot"><span class="Identifier">MethodsRoot</span></a></pre></dt>
+  <dd>
+    
+    object for groups methods
+    
+  </dd>
+</div>
+<div id="MessagesMethods">
   <dt><pre><a href="api.html#MessagesMethods"><span class="Identifier">MessagesMethods</span></a> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="api.html#MethodsRoot"><span class="Identifier">MethodsRoot</span></a></pre></dt>
   <dd>
     
@@ -173,12 +194,25 @@
     
   </dd>
 </div>
+<div id="VkBotHandler">
+  <dt><pre><a href="api.html#VkBotHandler"><span class="Identifier">VkBotHandler</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">update_type</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">cb</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">event</span><span class="Other">:</span> <span class="Identifier">JsonNode</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> {.<span class="Identifier">async</span>.}
+</pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
 <div id="VkClient">
-  <dt><pre><a href="api.html#VkClient"><span class="Identifier">VkClient</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
+  <dt><pre><a href="api.html#VkClient"><span class="Identifier">VkClient</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
   <span class="Identifier">token</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
   <span class="Identifier">lang</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
   <span class="Identifier">version</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
-  </pre></dt>
+  <span class="Identifier">group_id</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">handlers</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="api.html#VkBotHandler"><span class="Identifier">VkBotHandler</span></a><span class="Other">]</span>
+</pre></dt>
   <dd>
     
     
@@ -226,9 +260,21 @@
 </div>
 
 </div>
+<div id="groups-procs-all">
+  <div id="groups,VkClient">
+  <dt><pre><span class="Keyword">proc</span> <a href="#groups%2CVkClient"><span class="Identifier">groups</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a><span class="Other">)</span><span class="Other">:</span> <a href="api.html#GroupsMethods"><span class="Identifier">GroupsMethods</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
+
+</div>
 <div id="initVk-procs-all">
-  <div id="initVk,string,float,string">
-  <dt><pre><span class="Keyword">proc</span> <a href="#initVk%2Cstring%2Cfloat%2Cstring"><span class="Identifier">initVk</span></a><span class="Other">(</span><span class="Identifier">accessToken</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">version</span><span class="Other">:</span> <span class="Identifier">float</span> <span class="Other">=</span> <span class="FloatNumber">5.199</span><span class="Other">;</span> <span class="Identifier">lang</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a> {.
+  <div id="initVk,string,int,float,string">
+  <dt><pre><span class="Keyword">proc</span> <a href="#initVk%2Cstring%2Cint%2Cfloat%2Cstring"><span class="Identifier">initVk</span></a><span class="Other">(</span><span class="Identifier">accessToken</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">group_id</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">;</span> <span class="Identifier">version</span><span class="Other">:</span> <span class="Identifier">float</span> <span class="Other">=</span> <span class="FloatNumber">5.199</span><span class="Other">;</span>
+            <span class="Identifier">lang</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a> {.
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">LibraryError</span><span class="Other">,</span> <span class="Identifier">SslError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">ReadDirEffect</span><span class="Other">,</span> <span class="Identifier">ReadEnvEffect</span><span class="Other">,</span> <span class="Identifier">ReadIOEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
@@ -241,7 +287,7 @@
 </div>
 <div id="messages-procs-all">
   <div id="messages,VkClient">
-  <dt><pre><span class="Keyword">proc</span> <a href="#messages%2CVkClient"><span class="Identifier">messages</span></a><span class="Other">(</span><span class="Identifier">self`gensym262</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a><span class="Other">)</span><span class="Other">:</span> <a href="api.html#MessagesMethods"><span class="Identifier">MessagesMethods</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#messages%2CVkClient"><span class="Identifier">messages</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a><span class="Other">)</span><span class="Other">:</span> <a href="api.html#MessagesMethods"><span class="Identifier">MessagesMethods</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -265,8 +311,7 @@
 </div>
 <div id="search-procs-all">
   <div id="search,VkClient">
-  <dt><pre><span class="Keyword">proc</span> <a href="#search%2CVkClient"><span class="Identifier">search</span></a><span class="Other">(</span><span class="Identifier">self`gensym264</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a><span class="Other">)</span><span class="Other">:</span> <a href="api.html#SearchMethods"><span class="Identifier">SearchMethods</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#search%2CVkClient"><span class="Identifier">search</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a><span class="Other">)</span><span class="Other">:</span> <a href="api.html#SearchMethods"><span class="Identifier">SearchMethods</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     
@@ -277,8 +322,7 @@
 </div>
 <div id="users-procs-all">
   <div id="users,VkClient">
-  <dt><pre><span class="Keyword">proc</span> <a href="#users%2CVkClient"><span class="Identifier">users</span></a><span class="Other">(</span><span class="Identifier">self`gensym263</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a><span class="Other">)</span><span class="Other">:</span> <a href="api.html#UsersMethods"><span class="Identifier">UsersMethods</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#users%2CVkClient"><span class="Identifier">users</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a><span class="Other">)</span><span class="Other">:</span> <a href="api.html#UsersMethods"><span class="Identifier">UsersMethods</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     
@@ -298,7 +342,16 @@
   <dt><pre><span class="Keyword">macro</span> <a href="#~.m%2CVkClient%2Cuntyped"><span class="Identifier">`~`</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="api.html#VkClient"><span class="Identifier">VkClient</span></a><span class="Other">;</span> <span class="Identifier">call</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
   <dd>
     
-    
+    Sugar syntax for calling any VK API methods
+<h3><a class="toc-backref" id="examples" href="#examples">Examples</a></h3><p><pre class="listing">
+<span class="Keyword">import</span>
+  <span class="Identifier">asyncdispatch</span><span class="Punctuation">,</span>
+  <span class="Identifier">vkraken</span>
+
+<span class="Keyword">var</span> <span class="Identifier">bot</span> <span class="Operator">=</span> <span class="Identifier">initVk</span><span class="Punctuation">(</span><span class="StringLit">&quot;bot token ...&quot;</span><span class="Punctuation">)</span>
+
+<span class="Identifier">echo</span> <span class="Identifier">waitFor</span> <span class="Identifier">bot</span><span class="Operator">~</span><span class="Identifier">users</span><span class="Operator">.</span><span class="Identifier">get</span><span class="Punctuation">(</span><span class="Identifier">user_ids</span> <span class="Operator">=</span> <span class="StringLit">&quot;1,2,3&quot;</span><span class="Punctuation">)</span></pre> </p>
+
     
   </dd>
 </div>
@@ -314,7 +367,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-01-05 01:33:25 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-01-05 05:18:53 UTC</small>
       </div>
     </div>
   </div>

@@ -1,0 +1,6 @@
+nimTitle	longpoll	vkraken/utils/longpoll.html	module src/vkraken/utils/longpoll		0
+nim	listen	vkraken/utils/longpoll.html#listen.i,VkClient	iterator listen(self: VkClient): JsonNode		31
+nim	run	vkraken/utils/longpoll.html#run,VkClient,bool	proc run(self: VkClient; raw: bool = false): owned(Future[void])		46
+nim	`@`	vkraken/utils/longpoll.html#@.m,VkClient,untyped,untyped	macro `@`(self: VkClient; event, body: untyped): untyped		53
+heading	Usage with lambda	vkraken/utils/longpoll.html#usage-with-lambda	  Usage with lambda		0
+heading	Usage with this macro	vkraken/utils/longpoll.html#usage-with-this-macro	  Usage with this macro		0

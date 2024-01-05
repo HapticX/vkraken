@@ -21,8 +21,12 @@
   <div class="document" id="documentId">
     <div class="container">
       <h1 class="title">Index</h1>
-      Modules: <a href="vkraken.html">vkraken</a>, <a href="vkraken/core/api.html">vkraken/core/api</a>, <a href="vkraken/core/core.html">vkraken/core/core</a>, <a href="vkraken/core/exceptions.html">vkraken/core/exceptions</a>, <a href="vkraken/core/objects.html">vkraken/core/objects</a>, <a href="vkraken/methods/messages.html">vkraken/methods/messages</a>, <a href="vkraken/methods/methods.html">vkraken/methods/methods</a>, <a href="vkraken/methods/search.html">vkraken/methods/search</a>, <a href="vkraken/methods/users.html">vkraken/methods/users</a>.<br/><p /><h2>API symbols</h2>
-<dl><dt><a name="%60~%60" href="#%60~%60"><span>`~`:</span></a></dt><dd><ul class="simple">
+      Modules: <a href="vkraken.html">vkraken</a>, <a href="vkraken/core/api.html">vkraken/core/api</a>, <a href="vkraken/core/core.html">vkraken/core/core</a>, <a href="vkraken/core/exceptions.html">vkraken/core/exceptions</a>, <a href="vkraken/core/objects.html">vkraken/core/objects</a>, <a href="vkraken/methods/groups.html">vkraken/methods/groups</a>, <a href="vkraken/methods/messages.html">vkraken/methods/messages</a>, <a href="vkraken/methods/methods.html">vkraken/methods/methods</a>, <a href="vkraken/methods/search.html">vkraken/methods/search</a>, <a href="vkraken/methods/users.html">vkraken/methods/users</a>, <a href="vkraken/utils/longpoll.html">vkraken/utils/longpoll</a>, <a href="vkraken/utils/utils.html">vkraken/utils/utils</a>.<br/><p /><h2>API symbols</h2>
+<dl><dt><a name="%60%40%60" href="#%60%40%60"><span>`@`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="longpoll: macro `@`(self: VkClient; event, body: untyped): untyped" href="vkraken/utils/longpoll.html#%40.m%2CVkClient%2Cuntyped%2Cuntyped">longpoll: macro `@`(self: VkClient; event, body: untyped): untyped</a></li>
+          </ul></dd>
+<dt><a name="%60~%60" href="#%60~%60"><span>`~`:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="api: macro `~`(self: VkClient; call: untyped): untyped" href="vkraken/core/api.html#~.m%2CVkClient%2Cuntyped">api: macro `~`(self: VkClient; call: untyped): untyped</a></li>
           </ul></dd>
@@ -244,6 +248,10 @@
 <li><a class="reference external"
           data-doc-search-tag="messages: proc deleteReaction(x: MessagesMethods; peer_id: int; cmid: int): Future[JsonNode]" href="vkraken/methods/messages.html#deleteReaction%2CMessagesMethods%2Cint%2Cint">messages: proc deleteReaction(x: MessagesMethods; peer_id: int; cmid: int): Future[JsonNode]</a></li>
           </ul></dd>
+<dt><a name="Delivery" href="#Delivery"><span>Delivery:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="objects: object Delivery" href="vkraken/core/objects.html#Delivery">objects: object Delivery</a></li>
+          </ul></dd>
 <dt><a name="denyMessagesFromGroup" href="#denyMessagesFromGroup"><span>denyMessagesFromGroup:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="messages: proc denyMessagesFromGroup(x: MessagesMethods; group_id: int): Future[JsonNode]" href="vkraken/methods/messages.html#denyMessagesFromGroup%2CMessagesMethods%2Cint">messages: proc denyMessagesFromGroup(x: MessagesMethods; group_id: int): Future[JsonNode]</a></li>
@@ -291,6 +299,8 @@
           data-doc-search-tag="objects: proc enumHook(s: string; v: var MaritalStatus)" href="vkraken/core/objects.html#enumHook%2Cstring%2CMaritalStatus">objects: proc enumHook(s: string; v: var MaritalStatus)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="objects: proc enumHook(s: string; v: var OccupationType)" href="vkraken/core/objects.html#enumHook%2Cstring%2COccupationType">objects: proc enumHook(s: string; v: var OccupationType)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="objects: proc enumHook(s: string; v: var OrderStatus)" href="vkraken/core/objects.html#enumHook%2Cstring%2COrderStatus">objects: proc enumHook(s: string; v: var OrderStatus)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="objects: proc enumHook(s: string; v: var PeopleMain)" href="vkraken/core/objects.html#enumHook%2Cstring%2CPeopleMain">objects: proc enumHook(s: string; v: var PeopleMain)</a></li>
           <li><a class="reference external"
@@ -360,6 +370,10 @@
          filters: seq[string] = @[]; fields: seq[string] = @[];
          search_global: bool = false): Future[seq[SearchHint]]</a></li>
           </ul></dd>
+<dt><a name="getLongPollServer" href="#getLongPollServer"><span>getLongPollServer:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="groups: proc getLongPollServer(x: GroupsMethods; group_id: int): Future[LongPollServer]" href="vkraken/methods/groups.html#getLongPollServer%2CGroupsMethods%2Cint">groups: proc getLongPollServer(x: GroupsMethods; group_id: int): Future[LongPollServer]</a></li>
+          </ul></dd>
 <dt><a name="getSubscriptions" href="#getSubscriptions"><span>getSubscriptions:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="users: proc getSubscriptions(x: UsersMethods; user_id: int; extended: bool = false;
@@ -372,6 +386,14 @@
 <li><a class="reference external"
           data-doc-search-tag="exceptions: object GroupAccessDeniedException" href="vkraken/core/exceptions.html#GroupAccessDeniedException">exceptions: object GroupAccessDeniedException</a></li>
           </ul></dd>
+<dt><a name="groups" href="#groups"><span>groups:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="api: proc groups(self: VkClient): GroupsMethods" href="vkraken/core/api.html#groups%2CVkClient">api: proc groups(self: VkClient): GroupsMethods</a></li>
+          </ul></dd>
+<dt><a name="GroupsMethods" href="#GroupsMethods"><span>GroupsMethods:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="api: object GroupsMethods" href="vkraken/core/api.html#GroupsMethods">api: object GroupsMethods</a></li>
+          </ul></dd>
 <dt><a name="HTTPSRequiredException" href="#HTTPSRequiredException"><span>HTTPSRequiredException:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="exceptions: object HTTPSRequiredException" href="vkraken/core/exceptions.html#HTTPSRequiredException">exceptions: object HTTPSRequiredException</a></li>
@@ -382,7 +404,9 @@
           </ul></dd>
 <dt><a name="initVk" href="#initVk"><span>initVk:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="api: proc initVk(accessToken: string; version: float = 5.199; lang: string = &quot;&quot;): VkClient" href="vkraken/core/api.html#initVk%2Cstring%2Cfloat%2Cstring">api: proc initVk(accessToken: string; version: float = 5.199; lang: string = &quot;&quot;): VkClient</a></li>
+          data-doc-search-tag="api: proc initVk(accessToken: string; group_id: int = 0; version: float = 5.199;
+       lang: string = &quot;&quot;): VkClient" href="vkraken/core/api.html#initVk%2Cstring%2Cint%2Cfloat%2Cstring">api: proc initVk(accessToken: string; group_id: int = 0; version: float = 5.199;
+       lang: string = &quot;&quot;): VkClient</a></li>
           </ul></dd>
 <dt><a name="InvalidAppIDException" href="#InvalidAppIDException"><span>InvalidAppIDException:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -428,6 +452,14 @@
 <li><a class="reference external"
           data-doc-search-tag="objects: object Link" href="vkraken/core/objects.html#Link">objects: object Link</a></li>
           </ul></dd>
+<dt><a name="listen" href="#listen"><span>listen:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="longpoll: iterator listen(self: VkClient): JsonNode" href="vkraken/utils/longpoll.html#listen.i%2CVkClient">longpoll: iterator listen(self: VkClient): JsonNode</a></li>
+          </ul></dd>
+<dt><a name="LongPollServer" href="#LongPollServer"><span>LongPollServer:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="objects: object LongPollServer" href="vkraken/core/objects.html#LongPollServer">objects: object LongPollServer</a></li>
+          </ul></dd>
 <dt><a name="MaritalStatus" href="#MaritalStatus"><span>MaritalStatus:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="objects: enum MaritalStatus" href="vkraken/core/objects.html#MaritalStatus">objects: enum MaritalStatus</a></li>
@@ -458,7 +490,7 @@
           </ul></dd>
 <dt><a name="messages" href="#messages"><span>messages:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="api: proc messages(self`gensym262: VkClient): MessagesMethods" href="vkraken/core/api.html#messages%2CVkClient">api: proc messages(self`gensym262: VkClient): MessagesMethods</a></li>
+          data-doc-search-tag="api: proc messages(self: VkClient): MessagesMethods" href="vkraken/core/api.html#messages%2CVkClient">api: proc messages(self: VkClient): MessagesMethods</a></li>
           </ul></dd>
 <dt><a name="MessagesMethods" href="#MessagesMethods"><span>MessagesMethods:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -507,6 +539,14 @@
 <dt><a name="OccupationType" href="#OccupationType"><span>OccupationType:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="objects: enum OccupationType" href="vkraken/core/objects.html#OccupationType">objects: enum OccupationType</a></li>
+          </ul></dd>
+<dt><a name="Order" href="#Order"><span>Order:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="objects: object Order" href="vkraken/core/objects.html#Order">objects: object Order</a></li>
+          </ul></dd>
+<dt><a name="OrderStatus" href="#OrderStatus"><span>OrderStatus:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="objects: enum OrderStatus" href="vkraken/core/objects.html#OrderStatus">objects: enum OrderStatus</a></li>
           </ul></dd>
 <dt><a name="OutOfLimitsException" href="#OutOfLimitsException"><span>OutOfLimitsException:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -572,9 +612,17 @@
 <li><a class="reference external"
           data-doc-search-tag="objects: object ProductSelection" href="vkraken/core/objects.html#ProductSelection">objects: object ProductSelection</a></li>
           </ul></dd>
+<dt><a name="PropertyValue" href="#PropertyValue"><span>PropertyValue:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="objects: object PropertyValue" href="vkraken/core/objects.html#PropertyValue">objects: object PropertyValue</a></li>
+          </ul></dd>
 <dt><a name="PushSettings" href="#PushSettings"><span>PushSettings:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="objects: object PushSettings" href="vkraken/core/objects.html#PushSettings">objects: object PushSettings</a></li>
+          </ul></dd>
+<dt><a name="Recipient" href="#Recipient"><span>Recipient:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="objects: object Recipient" href="vkraken/core/objects.html#Recipient">objects: object Recipient</a></li>
           </ul></dd>
 <dt><a name="Rect" href="#Rect"><span>Rect:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -610,9 +658,13 @@
 <li><a class="reference external"
           data-doc-search-tag="objects: object RepostsInfo" href="vkraken/core/objects.html#RepostsInfo">objects: object RepostsInfo</a></li>
           </ul></dd>
+<dt><a name="run" href="#run"><span>run:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="longpoll: proc run(self: VkClient; raw: bool = false): owned(Future[void])" href="vkraken/utils/longpoll.html#run%2CVkClient%2Cbool">longpoll: proc run(self: VkClient; raw: bool = false): owned(Future[void])</a></li>
+          </ul></dd>
 <dt><a name="search" href="#search"><span>search:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="api: proc search(self`gensym264: VkClient): SearchMethods" href="vkraken/core/api.html#search%2CVkClient">api: proc search(self`gensym264: VkClient): SearchMethods</a></li>
+          data-doc-search-tag="api: proc search(self: VkClient): SearchMethods" href="vkraken/core/api.html#search%2CVkClient">api: proc search(self: VkClient): SearchMethods</a></li>
           <li><a class="reference external"
           data-doc-search-tag="users: proc search(x: UsersMethods; q: string;
        sort: SearchUserSort = SearchUserSort.Popularity; offset: int = 0;
@@ -760,7 +812,7 @@
           </ul></dd>
 <dt><a name="users" href="#users"><span>users:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="api: proc users(self`gensym263: VkClient): UsersMethods" href="vkraken/core/api.html#users%2CVkClient">api: proc users(self`gensym263: VkClient): UsersMethods</a></li>
+          data-doc-search-tag="api: proc users(self: VkClient): UsersMethods" href="vkraken/core/api.html#users%2CVkClient">api: proc users(self: VkClient): UsersMethods</a></li>
           </ul></dd>
 <dt><a name="UsersMethods" href="#UsersMethods"><span>UsersMethods:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -782,9 +834,13 @@
 <li><a class="reference external"
           data-doc-search-tag="api: const VkApiRu" href="vkraken/core/api.html#VkApiRu">api: const VkApiRu</a></li>
           </ul></dd>
+<dt><a name="VkBotHandler" href="#VkBotHandler"><span>VkBotHandler:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="api: object VkBotHandler" href="vkraken/core/api.html#VkBotHandler">api: object VkBotHandler</a></li>
+          </ul></dd>
 <dt><a name="VkClient" href="#VkClient"><span>VkClient:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="api: object VkClient" href="vkraken/core/api.html#VkClient">api: object VkClient</a></li>
+          data-doc-search-tag="api: type VkClient" href="vkraken/core/api.html#VkClient">api: type VkClient</a></li>
           </ul></dd>
 <dt><a name="VkDonut" href="#VkDonut"><span>VkDonut:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -850,7 +906,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-01-05 01:33:25 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-01-05 05:18:53 UTC</small>
       </div>
     </div>
   </div>

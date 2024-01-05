@@ -266,6 +266,11 @@
   photo*: Photo
   crop*: Rect
   rect*: Rect">CropPhoto</a></li>
+<li><a class="reference" href="#Delivery" title="Delivery = object
+  address*: string
+  track_number*: string
+  track_link*: string
+  delivery_point*: JsonNode">Delivery</a></li>
 <li><a class="reference" href="#Dimensions" title="Dimensions = object
   width*: int
   height*: int
@@ -322,6 +327,10 @@
   desc*: string
   photo_50*: string
   photo_100*: string">Link</a></li>
+<li><a class="reference" href="#LongPollServer" title="LongPollServer = object
+  key*: string
+  server*: string
+  ts*: string">LongPollServer</a></li>
 <li><a class="reference" href="#MaritalStatus" title="MaritalStatus {.pure, size: 1.} = enum
   NotMatter = 0, NotMarried = 1, Dating = 2, Engaged = 3, Married = 4,
   Difficult = 5, ActiveSearch = 6, InLove = 7, CivilMarriage = 8">MaritalStatus</a></li>
@@ -389,6 +398,25 @@
   name*: string">Occupation</a></li>
 <li><a class="reference" href="#OccupationType" title="OccupationType {.pure.} = enum
   Work = &quot;work&quot;, School = &quot;school&quot;, University = &quot;university&quot;">OccupationType</a></li>
+<li><a class="reference" href="#Order" title="Order = object
+  id*: int
+  group_id*: int
+  user_id*: int
+  date*: int
+  variants_grouping_id*: int
+  is_main_variant*: bool
+  property_values*: seq[PropertyValue]
+  cart_quantity*: int
+  status*: OrderStatus
+  total_price*: Price
+  display_order_id*: string
+  comment*: string
+  preview_order_items*: seq[Product]
+  delivery*: Delivery
+  recipient*: Recipient">Order</a></li>
+<li><a class="reference" href="#OrderStatus" title="OrderStatus {.pure, size: 1.} = enum
+  NewOrder = 0, Agreed = 1, Assembled = 2, Delivered = 3, Completed = 4,
+  Canceled = 5, Removed = 6">OrderStatus</a></li>
 <li><a class="reference" href="#Peer" title="Peer = object
   id*: int                   ## идентификатор назначения
   ## тип. Возможные значения: user, chat, group, email
@@ -484,10 +512,18 @@
   is_hidden*: bool
   photo*: Photo
   count*: int">ProductSelection</a></li>
+<li><a class="reference" href="#PropertyValue" title="PropertyValue = object
+  variant_id*: int
+  variant_name*: string
+  property_name*: string">PropertyValue</a></li>
 <li><a class="reference" href="#PushSettings" title="PushSettings = object
   disabled_until*: int       ## указывает, до какого времени оповещения для чата отключены. -1 — отключены навсегда (бессрочно).
   disabled_forever*: bool
   no_sound*: bool            ## указывает, включен ли звук оповещений (1 — включен, 0 — отключен)">PushSettings</a></li>
+<li><a class="reference" href="#Recipient" title="Recipient = object
+  name*: string
+  phone*: string
+  display_text*: string">Recipient</a></li>
 <li><a class="reference" href="#Rect" title="Rect = object
   x*: float
   y*: float
@@ -749,6 +785,7 @@
 <li><a class="reference" href="#enumHook%2Cstring%2CLifeMain" title="enumHook(s: string; v: var LifeMain)">enumHook(s: string; v: var LifeMain)</a></li>
 <li><a class="reference" href="#enumHook%2Cstring%2CMaritalStatus" title="enumHook(s: string; v: var MaritalStatus)">enumHook(s: string; v: var MaritalStatus)</a></li>
 <li><a class="reference" href="#enumHook%2Cstring%2COccupationType" title="enumHook(s: string; v: var OccupationType)">enumHook(s: string; v: var OccupationType)</a></li>
+<li><a class="reference" href="#enumHook%2Cstring%2COrderStatus" title="enumHook(s: string; v: var OrderStatus)">enumHook(s: string; v: var OrderStatus)</a></li>
 <li><a class="reference" href="#enumHook%2Cstring%2CPeopleMain" title="enumHook(s: string; v: var PeopleMain)">enumHook(s: string; v: var PeopleMain)</a></li>
 <li><a class="reference" href="#enumHook%2Cstring%2CPlatform" title="enumHook(s: string; v: var Platform)">enumHook(s: string; v: var Platform)</a></li>
 <li><a class="reference" href="#enumHook%2Cstring%2CPolitical" title="enumHook(s: string; v: var Political)">enumHook(s: string; v: var Political)</a></li>
@@ -1257,6 +1294,19 @@
     
   </dd>
 </div>
+<div id="Delivery">
+  <dt><pre><a href="objects.html#Delivery"><span class="Identifier">Delivery</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">address</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">track_number</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">track_link</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">delivery_point</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">JsonNode</span>
+</pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
 <div id="Dimensions">
   <dt><pre><a href="objects.html#Dimensions"><span class="Identifier">Dimensions</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
   <span class="Identifier">width</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>
@@ -1415,6 +1465,18 @@
     
   </dd>
 </div>
+<div id="LongPollServer">
+  <dt><pre><a href="objects.html#LongPollServer"><span class="Identifier">LongPollServer</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">key</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">server</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">ts</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+</pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
 <div id="MaritalStatus">
   <dt><pre><a href="objects.html#MaritalStatus"><span class="Identifier">MaritalStatus</span></a> {.<span class="Identifier">pure</span><span class="Other">,</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="DecNumber">1</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">NotMatter</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">NotMarried</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">Dating</span> <span class="Other">=</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">Engaged</span> <span class="Other">=</span> <span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">Married</span> <span class="Other">=</span> <span class="DecNumber">4</span><span class="Other">,</span>
@@ -1553,6 +1615,40 @@
 <div id="OccupationType">
   <dt><pre><a href="objects.html#OccupationType"><span class="Identifier">OccupationType</span></a> {.<span class="Identifier">pure</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">Work</span> <span class="Other">=</span> <span class="StringLit">&quot;work&quot;</span><span class="Other">,</span> <span class="Identifier">School</span> <span class="Other">=</span> <span class="StringLit">&quot;school&quot;</span><span class="Other">,</span> <span class="Identifier">University</span> <span class="Other">=</span> <span class="StringLit">&quot;university&quot;</span></pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
+<div id="Order">
+  <dt><pre><a href="objects.html#Order"><span class="Identifier">Order</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">id</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">group_id</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">user_id</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">date</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">variants_grouping_id</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">is_main_variant</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">bool</span>
+  <span class="Identifier">property_values</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="objects.html#PropertyValue"><span class="Identifier">PropertyValue</span></a><span class="Other">]</span>
+  <span class="Identifier">cart_quantity</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">status</span><span class="Operator">*</span><span class="Other">:</span> <a href="objects.html#OrderStatus"><span class="Identifier">OrderStatus</span></a>
+  <span class="Identifier">total_price</span><span class="Operator">*</span><span class="Other">:</span> <a href="objects.html#Price"><span class="Identifier">Price</span></a>
+  <span class="Identifier">display_order_id</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">comment</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">preview_order_items</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="objects.html#Product"><span class="Identifier">Product</span></a><span class="Other">]</span>
+  <span class="Identifier">delivery</span><span class="Operator">*</span><span class="Other">:</span> <a href="objects.html#Delivery"><span class="Identifier">Delivery</span></a>
+  <span class="Identifier">recipient</span><span class="Operator">*</span><span class="Other">:</span> <a href="objects.html#Recipient"><span class="Identifier">Recipient</span></a>
+</pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
+<div id="OrderStatus">
+  <dt><pre><a href="objects.html#OrderStatus"><span class="Identifier">OrderStatus</span></a> {.<span class="Identifier">pure</span><span class="Other">,</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="DecNumber">1</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">NewOrder</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">,</span> <span class="Identifier">Agreed</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">Assembled</span> <span class="Other">=</span> <span class="DecNumber">2</span><span class="Other">,</span> <span class="Identifier">Delivered</span> <span class="Other">=</span> <span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">Completed</span> <span class="Other">=</span> <span class="DecNumber">4</span><span class="Other">,</span>
+  <span class="Identifier">Canceled</span> <span class="Other">=</span> <span class="DecNumber">5</span><span class="Other">,</span> <span class="Identifier">Removed</span> <span class="Other">=</span> <span class="DecNumber">6</span></pre></dt>
   <dd>
     
     
@@ -1747,6 +1843,18 @@
     
   </dd>
 </div>
+<div id="PropertyValue">
+  <dt><pre><a href="objects.html#PropertyValue"><span class="Identifier">PropertyValue</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">variant_id</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">variant_name</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">property_name</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+</pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
 <div id="PushSettings">
   <dt><pre><a href="objects.html#PushSettings"><span class="Identifier">PushSettings</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
   <span class="Identifier">disabled_until</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">int</span>       <span class="Comment">## указывает, до какого времени оповещения для чата отключены. -1 — отключены навсегда (бессрочно).</span>
@@ -1756,6 +1864,18 @@
   <dd>
     
     Настройки оповещений.
+    
+  </dd>
+</div>
+<div id="Recipient">
+  <dt><pre><a href="objects.html#Recipient"><span class="Identifier">Recipient</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">name</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">phone</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">display_text</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+</pre></dt>
+  <dd>
+    
+    
     
   </dd>
 </div>
@@ -2296,6 +2416,14 @@
     
   </dd>
 </div>
+<div id="enumHook,string,OrderStatus">
+  <dt><pre><span class="Keyword">proc</span> <a href="#enumHook%2Cstring%2COrderStatus"><span class="Identifier">enumHook</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="objects.html#OrderStatus"><span class="Identifier">OrderStatus</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
 <div id="enumHook,string,PeopleMain">
   <dt><pre><span class="Keyword">proc</span> <a href="#enumHook%2Cstring%2CPeopleMain"><span class="Identifier">enumHook</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="objects.html#PeopleMain"><span class="Identifier">PeopleMain</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
@@ -2429,7 +2557,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-01-05 01:33:25 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-01-05 05:18:53 UTC</small>
       </div>
     </div>
   </div>

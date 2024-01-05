@@ -17,103 +17,110 @@ nim	TemplateType	vkraken/core/objects.html#TemplateType	enum TemplateType		92
 nim	CarouselElementActionType	vkraken/core/objects.html#CarouselElementActionType	enum CarouselElementActionType		94
 nim	ContentSourceType	vkraken/core/objects.html#ContentSourceType	enum ContentSourceType		97
 nim	WhoCanWiki	vkraken/core/objects.html#WhoCanWiki	enum WhoCanWiki		100
-nim	Career	vkraken/core/objects.html#Career	object Career		104
-nim	City	vkraken/core/objects.html#City	object City		113
-nim	Contacts	vkraken/core/objects.html#Contacts	object Contacts		116
-nim	Contact	vkraken/core/objects.html#Contact	object Contact		119
-nim	UserCounters	vkraken/core/objects.html#UserCounters	object UserCounters		124
-nim	CommunityCounters	vkraken/core/objects.html#CommunityCounters	object CommunityCounters		140
-nim	Country	vkraken/core/objects.html#Country	object Country		147
-nim	Rect	vkraken/core/objects.html#Rect	object Rect		150
-nim	PhotoSize	vkraken/core/objects.html#PhotoSize	object PhotoSize		155
-nim	Photo	vkraken/core/objects.html#Photo	object Photo		160
-nim	CropPhoto	vkraken/core/objects.html#CropPhoto	object CropPhoto		170
-nim	Education	vkraken/core/objects.html#Education	object Education		174
-nim	Seen	vkraken/core/objects.html#Seen	object Seen		180
-nim	Military	vkraken/core/objects.html#Military	object Military		183
-nim	Occupation	vkraken/core/objects.html#Occupation	object Occupation		189
-nim	Personal	vkraken/core/objects.html#Personal	object Personal		193
-nim	Relative	vkraken/core/objects.html#Relative	object Relative		202
-nim	SearchHintGroup	vkraken/core/objects.html#SearchHintGroup	object SearchHintGroup		206
-nim	SearchHintProfile	vkraken/core/objects.html#SearchHintProfile	object SearchHintProfile		216
-nim	SearchHint	vkraken/core/objects.html#SearchHint	object SearchHint		220
-nim	University	vkraken/core/objects.html#University	object University		241
-nim	BanInfo	vkraken/core/objects.html#BanInfo	object BanInfo		253
-nim	CoverImage	vkraken/core/objects.html#CoverImage	object CoverImage		256
-nim	Cover	vkraken/core/objects.html#Cover	object Cover		260
-nim	Link	vkraken/core/objects.html#Link	object Link		263
-nim	Wallet	vkraken/core/objects.html#Wallet	object Wallet		270
-nim	Market	vkraken/core/objects.html#Market	object Market		273
-nim	Place	vkraken/core/objects.html#Place	object Place		282
-nim	CommentsPermission	vkraken/core/objects.html#CommentsPermission	object CommentsPermission		295
-nim	Copyright	vkraken/core/objects.html#Copyright	object Copyright		301
-nim	LikesInfo	vkraken/core/objects.html#LikesInfo	object LikesInfo		306
-nim	RepostsInfo	vkraken/core/objects.html#RepostsInfo	object RepostsInfo		311
-nim	ViewsInfo	vkraken/core/objects.html#ViewsInfo	object ViewsInfo		314
-nim	AttachmentType	vkraken/core/objects.html#AttachmentType	enum AttachmentType		316
-nim	Attachment	vkraken/core/objects.html#Attachment	object Attachment		318
-nim	Geo	vkraken/core/objects.html#Geo	object Geo		322
-nim	Coordinates	vkraken/core/objects.html#Coordinates	object Coordinates		326
-nim	GeoMessage	vkraken/core/objects.html#GeoMessage	object GeoMessage		329
-nim	VkDonut	vkraken/core/objects.html#VkDonut	object VkDonut		334
-nim	VkDonutComment	vkraken/core/objects.html#VkDonutComment	object VkDonutComment		340
-nim	KeyboardAction	vkraken/core/objects.html#KeyboardAction	object KeyboardAction		343
-nim	KeyboardButton	vkraken/core/objects.html#KeyboardButton	object KeyboardButton		351
-nim	Keyboard	vkraken/core/objects.html#Keyboard	object Keyboard		354
-nim	CarouselElementAction	vkraken/core/objects.html#CarouselElementAction	object CarouselElementAction		358
-nim	CarouselElement	vkraken/core/objects.html#CarouselElement	object CarouselElement		364
-nim	Template	vkraken/core/objects.html#Template	object Template		374
-nim	ForwardBotMessage	vkraken/core/objects.html#ForwardBotMessage	object ForwardBotMessage		378
-nim	ContentSource	vkraken/core/objects.html#ContentSource	object ContentSource		384
-nim	MessageActionPhoto	vkraken/core/objects.html#MessageActionPhoto	object MessageActionPhoto		392
-nim	MessageAction	vkraken/core/objects.html#MessageAction	object MessageAction		396
-nim	Peer	vkraken/core/objects.html#Peer	object Peer		402
-nim	PushSettings	vkraken/core/objects.html#PushSettings	object PushSettings		406
-nim	CanWrite	vkraken/core/objects.html#CanWrite	object CanWrite		410
-nim	ChatPhoto	vkraken/core/objects.html#ChatPhoto	object ChatPhoto		422
-nim	User	vkraken/core/objects.html#User	object User		427
-nim	Community	vkraken/core/objects.html#Community	object Community		498
-nim	WallPostRef	vkraken/core/objects.html#WallPostRef	type WallPostRef		552
-nim	WallPost	vkraken/core/objects.html#WallPost	object WallPost		553
-nim	WallCommentRef	vkraken/core/objects.html#WallCommentRef	type WallCommentRef		582
-nim	WallCommentThread	vkraken/core/objects.html#WallCommentThread	object WallCommentThread		583
-nim	WallComment	vkraken/core/objects.html#WallComment	object WallComment		589
-nim	MessageRef	vkraken/core/objects.html#MessageRef	type MessageRef		600
-nim	Message	vkraken/core/objects.html#Message	object Message		601
-nim	PinnedMessage	vkraken/core/objects.html#PinnedMessage	object PinnedMessage		626
-nim	ChatSettings	vkraken/core/objects.html#ChatSettings	object ChatSettings		639
-nim	Conversation	vkraken/core/objects.html#Conversation	object Conversation		650
-nim	Chat	vkraken/core/objects.html#Chat	object Chat		660
-nim	Note	vkraken/core/objects.html#Note	object Note		673
-nim	ChatUpdate	vkraken/core/objects.html#ChatUpdate	object ChatUpdate		685
-nim	CreatedChat	vkraken/core/objects.html#CreatedChat	object CreatedChat		688
-nim	WikiPage	vkraken/core/objects.html#WikiPage	object WikiPage		691
-nim	Price	vkraken/core/objects.html#Price	object Price		709
-nim	Dimensions	vkraken/core/objects.html#Dimensions	object Dimensions		714
-nim	CategorySection	vkraken/core/objects.html#CategorySection	object CategorySection		718
-nim	Category	vkraken/core/objects.html#Category	object Category		721
-nim	RejectInfo	vkraken/core/objects.html#RejectInfo	object RejectInfo		725
-nim	Product	vkraken/core/objects.html#Product	object Product		732
-nim	ProductSelection	vkraken/core/objects.html#ProductSelection	object ProductSelection		753
-nim	initKeyboard	vkraken/core/objects.html#initKeyboard,bool,bool,seq[KeyboardButton]	proc initKeyboard(one_time, inline: bool; buttons: seq[KeyboardButton] = @[]): Keyboard		765
-nim	buildKeyboard	vkraken/core/objects.html#buildKeyboard.m,static[bool],static[bool],untyped	macro buildKeyboard(one_time, inline: static[bool]; body: untyped)		769
-nim	buildKeyboard	vkraken/core/objects.html#buildKeyboard.m,untyped	macro buildKeyboard(body: untyped): untyped		841
-nim	enumHook	vkraken/core/objects.html#enumHook,string,SearchHintType	proc enumHook(s: string; v: var SearchHintType)		847
-nim	enumHook	vkraken/core/objects.html#enumHook,string,ContentSourceType	proc enumHook(s: string; v: var ContentSourceType)		853
-nim	enumHook	vkraken/core/objects.html#enumHook,string,TemplateType	proc enumHook(s: string; v: var TemplateType)		860
-nim	enumHook	vkraken/core/objects.html#enumHook,string,RelativeType	proc enumHook(s: string; v: var RelativeType)		866
-nim	enumHook	vkraken/core/objects.html#enumHook,string,CarouselElementActionType	proc enumHook(s: string; v: var CarouselElementActionType)		881
-nim	enumHook	vkraken/core/objects.html#enumHook,string,Gender	proc enumHook(s: string; v: var Gender)		888
-nim	enumHook	vkraken/core/objects.html#enumHook,string,Platform	proc enumHook(s: string; v: var Platform)		896
-nim	enumHook	vkraken/core/objects.html#enumHook,string,ButtonColor	proc enumHook(s: string; v: var ButtonColor)		908
-nim	enumHook	vkraken/core/objects.html#enumHook,string,ReportType	proc enumHook(s: string; v: var ReportType)		920
-nim	enumHook	vkraken/core/objects.html#enumHook,string,SearchUserSort	proc enumHook(s: string; v: var SearchUserSort)		932
-nim	enumHook	vkraken/core/objects.html#enumHook,string,MaritalStatus	proc enumHook(s: string; v: var MaritalStatus)		940
-nim	enumHook	vkraken/core/objects.html#enumHook,string,OccupationType	proc enumHook(s: string; v: var OccupationType)		962
-nim	enumHook	vkraken/core/objects.html#enumHook,string,Political	proc enumHook(s: string; v: var Political)		972
-nim	enumHook	vkraken/core/objects.html#enumHook,string,PeopleMain	proc enumHook(s: string; v: var PeopleMain)		994
-nim	enumHook	vkraken/core/objects.html#enumHook,string,LifeMain	proc enumHook(s: string; v: var LifeMain)		1010
-nim	enumHook	vkraken/core/objects.html#enumHook,string,WhoCanWiki	proc enumHook(s: string; v: var WhoCanWiki)		1030
-nimgrp	enumhook	vkraken/core/objects.html#enumHook-procs-all	proc		847
-nimgrp	buildkeyboard	vkraken/core/objects.html#buildKeyboard-macros-all	macro		769
+nim	OrderStatus	vkraken/core/objects.html#OrderStatus	enum OrderStatus		104
+nim	Career	vkraken/core/objects.html#Career	object Career		112
+nim	City	vkraken/core/objects.html#City	object City		121
+nim	Contacts	vkraken/core/objects.html#Contacts	object Contacts		124
+nim	Contact	vkraken/core/objects.html#Contact	object Contact		127
+nim	UserCounters	vkraken/core/objects.html#UserCounters	object UserCounters		132
+nim	CommunityCounters	vkraken/core/objects.html#CommunityCounters	object CommunityCounters		148
+nim	Country	vkraken/core/objects.html#Country	object Country		155
+nim	Rect	vkraken/core/objects.html#Rect	object Rect		158
+nim	PhotoSize	vkraken/core/objects.html#PhotoSize	object PhotoSize		163
+nim	Photo	vkraken/core/objects.html#Photo	object Photo		168
+nim	CropPhoto	vkraken/core/objects.html#CropPhoto	object CropPhoto		178
+nim	Education	vkraken/core/objects.html#Education	object Education		182
+nim	Seen	vkraken/core/objects.html#Seen	object Seen		188
+nim	Military	vkraken/core/objects.html#Military	object Military		191
+nim	Occupation	vkraken/core/objects.html#Occupation	object Occupation		197
+nim	Personal	vkraken/core/objects.html#Personal	object Personal		201
+nim	Relative	vkraken/core/objects.html#Relative	object Relative		210
+nim	SearchHintGroup	vkraken/core/objects.html#SearchHintGroup	object SearchHintGroup		214
+nim	SearchHintProfile	vkraken/core/objects.html#SearchHintProfile	object SearchHintProfile		224
+nim	SearchHint	vkraken/core/objects.html#SearchHint	object SearchHint		228
+nim	University	vkraken/core/objects.html#University	object University		249
+nim	BanInfo	vkraken/core/objects.html#BanInfo	object BanInfo		261
+nim	CoverImage	vkraken/core/objects.html#CoverImage	object CoverImage		264
+nim	Cover	vkraken/core/objects.html#Cover	object Cover		268
+nim	Link	vkraken/core/objects.html#Link	object Link		271
+nim	Wallet	vkraken/core/objects.html#Wallet	object Wallet		278
+nim	Market	vkraken/core/objects.html#Market	object Market		281
+nim	Place	vkraken/core/objects.html#Place	object Place		290
+nim	CommentsPermission	vkraken/core/objects.html#CommentsPermission	object CommentsPermission		303
+nim	Copyright	vkraken/core/objects.html#Copyright	object Copyright		309
+nim	LikesInfo	vkraken/core/objects.html#LikesInfo	object LikesInfo		314
+nim	RepostsInfo	vkraken/core/objects.html#RepostsInfo	object RepostsInfo		319
+nim	ViewsInfo	vkraken/core/objects.html#ViewsInfo	object ViewsInfo		322
+nim	AttachmentType	vkraken/core/objects.html#AttachmentType	enum AttachmentType		324
+nim	Attachment	vkraken/core/objects.html#Attachment	object Attachment		326
+nim	Geo	vkraken/core/objects.html#Geo	object Geo		330
+nim	Coordinates	vkraken/core/objects.html#Coordinates	object Coordinates		334
+nim	GeoMessage	vkraken/core/objects.html#GeoMessage	object GeoMessage		337
+nim	VkDonut	vkraken/core/objects.html#VkDonut	object VkDonut		342
+nim	VkDonutComment	vkraken/core/objects.html#VkDonutComment	object VkDonutComment		348
+nim	KeyboardAction	vkraken/core/objects.html#KeyboardAction	object KeyboardAction		351
+nim	KeyboardButton	vkraken/core/objects.html#KeyboardButton	object KeyboardButton		359
+nim	Keyboard	vkraken/core/objects.html#Keyboard	object Keyboard		362
+nim	CarouselElementAction	vkraken/core/objects.html#CarouselElementAction	object CarouselElementAction		366
+nim	CarouselElement	vkraken/core/objects.html#CarouselElement	object CarouselElement		372
+nim	Template	vkraken/core/objects.html#Template	object Template		382
+nim	ForwardBotMessage	vkraken/core/objects.html#ForwardBotMessage	object ForwardBotMessage		386
+nim	ContentSource	vkraken/core/objects.html#ContentSource	object ContentSource		392
+nim	MessageActionPhoto	vkraken/core/objects.html#MessageActionPhoto	object MessageActionPhoto		400
+nim	MessageAction	vkraken/core/objects.html#MessageAction	object MessageAction		404
+nim	Peer	vkraken/core/objects.html#Peer	object Peer		410
+nim	PushSettings	vkraken/core/objects.html#PushSettings	object PushSettings		414
+nim	CanWrite	vkraken/core/objects.html#CanWrite	object CanWrite		418
+nim	ChatPhoto	vkraken/core/objects.html#ChatPhoto	object ChatPhoto		430
+nim	User	vkraken/core/objects.html#User	object User		435
+nim	Community	vkraken/core/objects.html#Community	object Community		506
+nim	WallPostRef	vkraken/core/objects.html#WallPostRef	type WallPostRef		560
+nim	WallPost	vkraken/core/objects.html#WallPost	object WallPost		561
+nim	WallCommentRef	vkraken/core/objects.html#WallCommentRef	type WallCommentRef		590
+nim	WallCommentThread	vkraken/core/objects.html#WallCommentThread	object WallCommentThread		591
+nim	WallComment	vkraken/core/objects.html#WallComment	object WallComment		597
+nim	MessageRef	vkraken/core/objects.html#MessageRef	type MessageRef		608
+nim	Message	vkraken/core/objects.html#Message	object Message		609
+nim	PinnedMessage	vkraken/core/objects.html#PinnedMessage	object PinnedMessage		634
+nim	ChatSettings	vkraken/core/objects.html#ChatSettings	object ChatSettings		647
+nim	Conversation	vkraken/core/objects.html#Conversation	object Conversation		658
+nim	Chat	vkraken/core/objects.html#Chat	object Chat		668
+nim	Note	vkraken/core/objects.html#Note	object Note		681
+nim	ChatUpdate	vkraken/core/objects.html#ChatUpdate	object ChatUpdate		693
+nim	CreatedChat	vkraken/core/objects.html#CreatedChat	object CreatedChat		696
+nim	LongPollServer	vkraken/core/objects.html#LongPollServer	object LongPollServer		699
+nim	WikiPage	vkraken/core/objects.html#WikiPage	object WikiPage		703
+nim	Price	vkraken/core/objects.html#Price	object Price		721
+nim	Dimensions	vkraken/core/objects.html#Dimensions	object Dimensions		726
+nim	CategorySection	vkraken/core/objects.html#CategorySection	object CategorySection		730
+nim	Category	vkraken/core/objects.html#Category	object Category		733
+nim	RejectInfo	vkraken/core/objects.html#RejectInfo	object RejectInfo		737
+nim	Product	vkraken/core/objects.html#Product	object Product		744
+nim	ProductSelection	vkraken/core/objects.html#ProductSelection	object ProductSelection		765
+nim	PropertyValue	vkraken/core/objects.html#PropertyValue	object PropertyValue		773
+nim	Delivery	vkraken/core/objects.html#Delivery	object Delivery		777
+nim	Recipient	vkraken/core/objects.html#Recipient	object Recipient		783
+nim	Order	vkraken/core/objects.html#Order	object Order		787
+nim	initKeyboard	vkraken/core/objects.html#initKeyboard,bool,bool,seq[KeyboardButton]	proc initKeyboard(one_time, inline: bool; buttons: seq[KeyboardButton] = @[]): Keyboard		807
+nim	buildKeyboard	vkraken/core/objects.html#buildKeyboard.m,static[bool],static[bool],untyped	macro buildKeyboard(one_time, inline: static[bool]; body: untyped)		811
+nim	buildKeyboard	vkraken/core/objects.html#buildKeyboard.m,untyped	macro buildKeyboard(body: untyped): untyped		883
+nim	enumHook	vkraken/core/objects.html#enumHook,string,SearchHintType	proc enumHook(s: string; v: var SearchHintType)		889
+nim	enumHook	vkraken/core/objects.html#enumHook,string,ContentSourceType	proc enumHook(s: string; v: var ContentSourceType)		895
+nim	enumHook	vkraken/core/objects.html#enumHook,string,TemplateType	proc enumHook(s: string; v: var TemplateType)		902
+nim	enumHook	vkraken/core/objects.html#enumHook,string,RelativeType	proc enumHook(s: string; v: var RelativeType)		908
+nim	enumHook	vkraken/core/objects.html#enumHook,string,CarouselElementActionType	proc enumHook(s: string; v: var CarouselElementActionType)		923
+nim	enumHook	vkraken/core/objects.html#enumHook,string,Gender	proc enumHook(s: string; v: var Gender)		930
+nim	enumHook	vkraken/core/objects.html#enumHook,string,Platform	proc enumHook(s: string; v: var Platform)		938
+nim	enumHook	vkraken/core/objects.html#enumHook,string,ButtonColor	proc enumHook(s: string; v: var ButtonColor)		950
+nim	enumHook	vkraken/core/objects.html#enumHook,string,ReportType	proc enumHook(s: string; v: var ReportType)		962
+nim	enumHook	vkraken/core/objects.html#enumHook,string,SearchUserSort	proc enumHook(s: string; v: var SearchUserSort)		974
+nim	enumHook	vkraken/core/objects.html#enumHook,string,MaritalStatus	proc enumHook(s: string; v: var MaritalStatus)		982
+nim	enumHook	vkraken/core/objects.html#enumHook,string,OccupationType	proc enumHook(s: string; v: var OccupationType)		1004
+nim	enumHook	vkraken/core/objects.html#enumHook,string,Political	proc enumHook(s: string; v: var Political)		1014
+nim	enumHook	vkraken/core/objects.html#enumHook,string,PeopleMain	proc enumHook(s: string; v: var PeopleMain)		1036
+nim	enumHook	vkraken/core/objects.html#enumHook,string,LifeMain	proc enumHook(s: string; v: var LifeMain)		1052
+nim	enumHook	vkraken/core/objects.html#enumHook,string,OrderStatus	proc enumHook(s: string; v: var OrderStatus)		1072
+nim	enumHook	vkraken/core/objects.html#enumHook,string,WhoCanWiki	proc enumHook(s: string; v: var WhoCanWiki)		1090
+nimgrp	enumhook	vkraken/core/objects.html#enumHook-procs-all	proc		889
+nimgrp	buildkeyboard	vkraken/core/objects.html#buildKeyboard-macros-all	macro		811
 heading	Example	vkraken/core/objects.html#example	  Example		0

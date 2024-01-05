@@ -1,0 +1,4 @@
+nimTitle	groups	vkraken/methods/groups.html	module src/vkraken/methods/groups		0
+nim	getLongPollServer	vkraken/methods/groups.html#getLongPollServer,GroupsMethods,int	proc getLongPollServer(x: GroupsMethods; group_id: int): Future[LongPollServer]		9
+heading	Parameters	vkraken/methods/groups.html#parameters	   Parameters		0
+heading	Result	vkraken/methods/groups.html#result	   Result		0
