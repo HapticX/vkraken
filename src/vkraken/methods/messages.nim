@@ -18,15 +18,15 @@ proc addChatUser*(x: MessagesMethods, chat_id: int, user_id: int,
   ##
   ## Требуются права доступа: messages.
   ##
-  ## ## Arguments
+  ## ### Arguments
   ## - `chat_id` -- Идентификатор беседы. (Обязательный параметр)
   ## - `user_id` -- Идентификатор пользователя, которого необходимо включить в беседу. (Обязательный параметр)
   ## - `visible_messages_count` -- Количество видимых сообщений в чате. (Обязательный параметр)
   ##
-  ## ## Result
+  ## ### Result
   ## После успешного выполнения возвращает `1`.
   ##
-  ## ## Error Codes
+  ## ### Error Codes
   ## - `103`: Out of limits
   ## - `925`: You are not an admin of this chat
   ## - `932`: Your community can't interact with this peer
@@ -57,16 +57,16 @@ proc allowMessagesFromGroup*(x: MessagesMethods, group_id: int, key: string): Fu
   ##
   ## Требуются права доступа: messages.
   ##
-  ## ## Arguments
+  ## ### Arguments
   ## - `group_id` -- Идентификатор сообщества. (Обязательный параметр)
   ## - `key` -- Произвольная строка для идентификации пользователя.
   ##   Значение будет возвращено в событии message_allow Callback API.
   ##   Макс. длина = 256
   ##
-  ## ## Result
+  ## ### Result
   ## После успешного выполнения возвращает `1`.
   ##
-  ## ## Error Codes
+  ## ### Error Codes
   ## - 943 -- Cannot use this intent
   ## 
   var arguments = %*{
@@ -89,7 +89,7 @@ proc createChat*(x: MessagesMethods, user_ids: seq[int], title: string,
   ## Метод также можно вызвать с ключом доступа сообщества.
   ## Требуются права доступа: messages.
   ##
-  ## ## Parameters
+  ## ### Parameters
   ## - `user_ids` -- Идентификаторы пользователей, которые будут участвовать в чате. Используйте запятую в качестве разделителя.
   ##   Указанные пользователи должны находиться в списке друзей текущего пользователя.
   ## - `title` -- Название чата.
@@ -99,7 +99,7 @@ proc createChat*(x: MessagesMethods, user_ids: seq[int], title: string,
   ## Кроме того, в таком чате нельзя пригласить участников при создании.
   ## Добавить их можно позже с помощью API-метода `messages.getInviteLink`.
   ##
-  ## ## Result
+  ## ### Result
   ## После успешного выполнения возвращает идентификатор созданного чата (`chat_id`).
   ## 
   var arguments = %*{
@@ -125,7 +125,7 @@ proc delete*(x: MessagesMethods, message_ids: seq[int], spam: bool = false,
   ## Метод также доступен при использовании ключа доступа сообщества.
   ## Требуются права доступа: messages.
   ##
-  ## ## Parameters
+  ## ### Parameters
   ## - `message_ids` -- Список идентификаторов сообщений, разделённых через запятую.
   ## - `spam` -- Пометить сообщения как спам (доступен только с ключом доступа пользователя).
   ## - `reason` -- Идентификатор причины блокировки (integer).
@@ -137,10 +137,10 @@ proc delete*(x: MessagesMethods, message_ids: seq[int], spam: bool = false,
   ##   Для сообщества: `-id сообщества`.
   ## - `cmids` -- Идентификаторы сообщения в беседе, разделённые через запятую.
   ##
-  ## ## Result
+  ## ### Result
   ## После успешного выполнения возвращает `1` для каждого удалённого сообщения.
   ##
-  ## ## Error Codes
+  ## ### Error Codes
   ## 924 - Can't delete this message for everybody
   ## 
   var arguments = %*{
@@ -166,16 +166,16 @@ proc deleteChatPhoto*(x: MessagesMethods, chat_id: int, group_id: int = 0): Futu
   ## Этот метод может быть вызван с ключом доступа сообщества.
   ## Требуются права доступа: messages.
   ##
-  ## ## Arguments
+  ## ### Arguments
   ## - `chat_id` -- Идентификатор беседы. (Обязательный параметр)
   ## - `group_id` -- Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).
   ##
-  ## ## Result
+  ## ### Result
   ## После успешного выполнения возвращает объект, содержащий следующие поля:
   ## - `message_id` — идентификатор отправленного системного сообщения;
   ## - `chat` — объект мультидиалога.
   ##
-  ## ## Error Codes
+  ## ### Error Codes
   ## - 925: You are not an admin of this chat.
   ## - 945: Chat was disabled.
   ## 
@@ -200,7 +200,7 @@ proc deleteConversation*(x: MessagesMethods, user_id: int = 0, peer_id: int = 0,
   ## Этот метод можно вызвать с ключом доступа сообщества.
   ## Требуются права доступа: messages.
   ##
-  ## ## Arguments
+  ## ### Arguments
   ## - `user_id` -- Идентификатор пользователя. Если требуется очистить историю беседы, используйте `peer_id`.
   ## - `peer_id` -- Идентификатор назначения.
   ##   Для групповой беседы: `2000000000 + id беседы`.
@@ -214,7 +214,7 @@ proc deleteConversation*(x: MessagesMethods, user_id: int = 0, peer_id: int = 0,
   ##   *Запрещён с версии 5.100*
   ## - `group_id` -- Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).
   ##
-  ## ## Result
+  ## ### Result
   ## После успешного выполнения возвращает поле `last_deleted_id`,
   ## содержащее идентификатор последнего удалённого сообщения в переписке.
   ## 
@@ -239,7 +239,7 @@ proc deleteReaction*(x: MessagesMethods, peer_id: int, cmid: int): Future[JsonNo
   ## Этот метод можно вызвать с ключом доступа сообщества.
   ## Требуются права доступа: messages.
   ##
-  ## ## Parameters
+  ## ### Parameters
   ## - `peer_id` -- Идентификатор беседы:
   ##   - `user_id` — для личных чатов.
   ##   - `group_id` — для чатов с сообществом.
@@ -260,13 +260,13 @@ proc deleteReaction*(x: MessagesMethods, peer_id: int, cmid: int): Future[JsonNo
 proc denyMessagesFromGroup*(x: MessagesMethods, group_id: int): Future[JsonNode] {.async.} =
   ## Запрещает отправку сообщений от сообщества текущему пользователю.
   ##
-  ## ## Arguments
+  ## ### Arguments
   ## - `group_id` -- Идентификатор сообщества. (Обязательный параметр)
   ##
-  ## ## Permissions
+  ## ### Permissions
   ## Требуются права доступа: messages.
   ##
-  ## ## Result
+  ## ### Result
   ## После успешного выполнения возвращает 1.
   ## 
   var arguments = %*{
@@ -292,7 +292,7 @@ proc edit*(x: MessagesMethods, peer_id: int, message: string = "",
   ## Метод можно вызвать с ключом доступа сообщества.
   ## Требуются права доступа: messages.
   ##
-  ## ## Parameters
+  ## ### Parameters
   ## - `peer_id` -- Идентификатор назначения.
   ##   - Для пользователя: `id пользователя`.
   ##   - Для групповой беседы: `2000000000 + id беседы`.
@@ -318,10 +318,10 @@ proc edit*(x: MessagesMethods, peer_id: int, message: string = "",
   ## - `template` -- Объект, описывающий шаблоны сообщений (text).
   ## - `keyboard` -- Объект, описывающий клавиатуру бота (text).
   ##
-  ## ## Result
+  ## ### Result
   ## После успешного выполнения возвращает `1`.
   ##
-  ## ## Error Codes
+  ## ### Error Codes
   ## - `901`: Can't send messages for users without permission
   ## - `909`: Can't edit this message, because it's too old
   ## - `910`: Can't sent this message, because it's too big
@@ -376,7 +376,7 @@ proc send*(x: MessagesMethods, random_id: int = rand(100_000),
   ## Этот метод можно вызвать с ключом доступа сообщества.
   ## Требуются права доступа: messages.
   ##
-  ## ## Arguments
+  ## ### Arguments
   ## - `user_id` -- Обязательный параметр. Идентификатор пользователя, которому отправляется сообщение.
   ## - `random_id` -- Обязательный параметр. Уникальный (в привязке к идентификатору приложения и идентификатору отправителя) идентификатор, предназначенный для предотвращения повторной отправки одного и того же сообщения. Сохраняется вместе с сообщением и доступен в истории сообщений. Возможные значения:
   ##   - `0` — проверка на уникальность не нужна.
@@ -446,7 +446,7 @@ proc send*(x: MessagesMethods, random_id: int = rand(100_000),
   ## - `intent` -- Необязательный параметр. Строка, описывающая интенты.
   ## - `subscribe_id` -- Необязательный параметр. Число, которое будет использоваться для работы с интентами в будущем.
   ##
-  ## ## Result
+  ## ### Result
   ## Метод возвращает идентификатор отправленного сообщения. Если передан параметр peer_ids, метод возвращает массив объектов. Поля объекта:
   ##
   ## | Поле                     | Тип     | Описание |
