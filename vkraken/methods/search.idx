@@ -1,0 +1,4 @@
+nimTitle	search	vkraken/methods/search.html	module src/vkraken/methods/search		0
+nim	getHints	vkraken/methods/search.html#getHints,SearchMethods,string,int,int,seq[string],seq[string],bool	proc getHints(x: SearchMethods; q: string; offset: int = 0; limit: int = 100;\n         filters: seq[string] = @[]; fields: seq[string] = @[];\n         search_global: bool = false): Future[seq[SearchHint]]		11
+heading	Parameters	vkraken/methods/search.html#parameters	  Parameters		0
+heading	Result	vkraken/methods/search.html#result	  Result		0

@@ -1,0 +1,15 @@
+nimTitle	api	vkraken/core/api.html	module src/vkraken/core/api		0
+nim	VkApiCom	vkraken/core/api.html#VkApiCom	const VkApiCom		19
+nim	VkApiRu	vkraken/core/api.html#VkApiRu	const VkApiRu		20
+nim	VkClient	vkraken/core/api.html#VkClient	object VkClient		24
+nim	MethodsRoot	vkraken/core/api.html#MethodsRoot	object MethodsRoot		30
+nim	MessagesMethods	vkraken/core/api.html#MessagesMethods	object MessagesMethods		32
+nim	UsersMethods	vkraken/core/api.html#UsersMethods	object UsersMethods		33
+nim	SearchMethods	vkraken/core/api.html#SearchMethods	object SearchMethods		34
+nim	initVk	vkraken/core/api.html#initVk,string,float,string	proc initVk(accessToken: string; version: float = 5.199; lang: string = ""): VkClient		37
+nim	callVkMethod	vkraken/core/api.html#callVkMethod,VkClient,string,JsonNode	proc callVkMethod(self: VkClient; name: string; arguments: JsonNode): Future[JsonNode]		46
+nim	messages	vkraken/core/api.html#messages,VkClient	proc messages(self`gensym262: VkClient): MessagesMethods		169
+nim	users	vkraken/core/api.html#users,VkClient	proc users(self`gensym263: VkClient): UsersMethods		170
+nim	search	vkraken/core/api.html#search,VkClient	proc search(self`gensym264: VkClient): SearchMethods		171
+nim	`~`	vkraken/core/api.html#~.m,VkClient,untyped	macro `~`(self: VkClient; call: untyped): untyped		174
+nim	removeEmptyArgs	vkraken/core/api.html#removeEmptyArgs,JsonNode	proc removeEmptyArgs(arguments: JsonNode)		188

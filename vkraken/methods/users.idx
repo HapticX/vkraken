@@ -1,0 +1,16 @@
+nimTitle	users	vkraken/methods/users.html	module src/vkraken/methods/users		0
+nim	get	vkraken/methods/users.html#get,UsersMethods,seq[int],seq[string],string	proc get(x: UsersMethods; user_ids: seq[int]; fields: seq[string] = @[];\n    name_case: string = "nom"): Future[seq[User]]		11
+nim	getFollowers	vkraken/methods/users.html#getFollowers,UsersMethods,int,int,int,seq[string],string	proc getFollowers(x: UsersMethods; user_id: int; offset: int = 0; count: int = 100;\n             fields: seq[string] = @[]; name_case: string = "nom"): Future[\n    seq[User]]		105
+nim	getSubscriptions	vkraken/methods/users.html#getSubscriptions,UsersMethods,int,bool,int,int,seq[string]	proc getSubscriptions(x: UsersMethods; user_id: int; extended: bool = false;\n                 offset: int = 0; count: int = 100; fields: seq[string] = @[]): Future[\n    seq[User]]		204
+nim	report	vkraken/methods/users.html#report,UsersMethods,int,ReportType,string	proc report(x: UsersMethods; user_id: int; type: ReportType; comment: string = ""): Future[\n    seq[User]]		238
+nim	search	vkraken/methods/users.html#search,UsersMethods,string,SearchUserSort,int,int,seq[string],int,int,int,int,string,int,int,int,int,int,Gender,MaritalStatus,int,int,int,int,int,bool,bool,int,int,int,int,int,string,string,string,int,seq[string],string	proc search(x: UsersMethods; q: string;\n       sort: SearchUserSort = SearchUserSort.Popularity; offset: int = 0;\n       count: int = 100; fields: seq[string] = @[]; city: int = 0;\n       city_id: int = 0; country: int = 0; country_id: int = 0;\n       hometown: string = ""; university_country: int = 0; university: int = 0;\n       university_year: int = 0; university_faculty: int = 0;\n       university_chair: int = 0; sex: Gender = Gender.AnyGender;\n       status: MaritalStatus = MaritalStatus.NotMatter; age_from: int = 0;\n       age_to: int = 0; birth_day: int = 0; birth_month: int = 0;\n       birth_year: int = 0; online: bool = false; has_photo: bool = false;\n       school_country: int = 0; school_city: int = 0; school_class: int = 0;\n       school: int = 0; school_year: int = 0; religion: string = "";\n       company: string = ""; position: string = ""; group_id: int = 0;\n       from_list: seq[string] = @[]; screen_ref: string = ""): Future[seq[User]]		280
+heading	Arguments	vkraken/methods/users.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/users.html#result	  Result		0
+heading	Arguments	vkraken/methods/users.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/users.html#result	  Result		0
+heading	Arguments	vkraken/methods/users.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/users.html#result	  Result		0
+heading	Arguments	vkraken/methods/users.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/users.html#result	  Result		0
+heading	Arguments	vkraken/methods/users.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/users.html#result	  Result		0

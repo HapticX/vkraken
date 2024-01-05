@@ -1,0 +1,36 @@
+nimTitle	messages	vkraken/methods/messages.html	module src/vkraken/methods/messages		0
+nim	addChatUser	vkraken/methods/messages.html#addChatUser,MessagesMethods,int,int,int	proc addChatUser(x: MessagesMethods; chat_id: int; user_id: int;\n            visible_messages_count: int = 200): Future[int]		14
+nim	allowMessagesFromGroup	vkraken/methods/messages.html#allowMessagesFromGroup,MessagesMethods,int,string	proc allowMessagesFromGroup(x: MessagesMethods; group_id: int; key: string): Future[\n    int]		52
+nim	createChat	vkraken/methods/messages.html#createChat,MessagesMethods,seq[int],string,int	proc createChat(x: MessagesMethods; user_ids: seq[int]; title: string;\n           group_id: int = 0): Future[CreatedChat]		83
+nim	delete	vkraken/methods/messages.html#delete,MessagesMethods,seq[int],bool,int,int,bool,int,seq[int]	proc delete(x: MessagesMethods; message_ids: seq[int]; spam: bool = false;\n       reason: int = 0; group_id: int = 0; delete_for_all: bool = false;\n       peer_id: int; cmids: seq[int] = @[]): Future[int]		120
+nim	deleteChatPhoto	vkraken/methods/messages.html#deleteChatPhoto,MessagesMethods,int,int	proc deleteChatPhoto(x: MessagesMethods; chat_id: int; group_id: int = 0): Future[\n    ChatUpdate]		160
+nim	deleteConversation	vkraken/methods/messages.html#deleteConversation,MessagesMethods,int,int,int,int,int	proc deleteConversation(x: MessagesMethods; user_id: int = 0; peer_id: int = 0;\n                   offset: int = 0; count: int = 0; group_id: int = 0): Future[\n    JsonNode]		194
+nim	deleteReaction	vkraken/methods/messages.html#deleteReaction,MessagesMethods,int,int	proc deleteReaction(x: MessagesMethods; peer_id: int; cmid: int): Future[JsonNode]		233
+nim	denyMessagesFromGroup	vkraken/methods/messages.html#denyMessagesFromGroup,MessagesMethods,int	proc denyMessagesFromGroup(x: MessagesMethods; group_id: int): Future[JsonNode]		260
+nim	edit	vkraken/methods/messages.html#edit,MessagesMethods,int,string,int,int,seq[string],bool,bool,int,bool,bool,int,int,Template,Keyboard	proc edit(x: MessagesMethods; peer_id: int; message: string = ""; lat: int = 0;\n     long: int = 0; attachment: seq[string] = @[];\n     keep_forward_messages: bool = false; keep_snippets: bool = false;\n     group_id: int = 0; dont_parse_links: bool = false;\n     disable_mentions: bool = false; message_id: int = 0;\n     conversation_message_id: int = 0; template: Template = Template();\n     keyboard: Keyboard = Keyboard()): Future[int]		286
+nim	send	vkraken/methods/messages.html#send,MessagesMethods,int,int,int,seq[int],string,int,seq[int],string,int,int,int,seq[string],int,seq[int],ForwardBotMessage,int,int,Keyboard,Template,string,ContentSource,bool,bool,string,int	proc send(x: MessagesMethods; random_id: int = rand(100000); user_id: int = 0;\n     peer_id: int = 0; peer_ids: seq[int] = @[]; domain: string = "";\n     chat_id: int = 0; user_ids: seq[int] = @[]; message: string = "";\n     guid: int = 0; lat: int = 0; long: int = 0; attachment: seq[string] = @[];\n     reply_to: int = 0; forward_messages: seq[int] = @[];\n     forward: ForwardBotMessage = ForwardBotMessage(); sticker_id: int = 0;\n     group_id: int = 0; keyboard: Keyboard = Keyboard();\n     template: Template = Template(); payload: string = "";\n     content_source: ContentSource = ContentSource();\n     dont_parse_links: bool = false; disable_mentions: bool = false;\n     intent: string = ""; subscribe_id: int = 0): Future[int]		370
+heading	Arguments	vkraken/methods/messages.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/messages.html#result	  Result		0
+heading	Error Codes	vkraken/methods/messages.html#error-codes	  Error Codes		0
+heading	Arguments	vkraken/methods/messages.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/messages.html#result	  Result		0
+heading	Error Codes	vkraken/methods/messages.html#error-codes	  Error Codes		0
+heading	Parameters	vkraken/methods/messages.html#parameters	  Parameters		0
+heading	Result	vkraken/methods/messages.html#result	  Result		0
+heading	Parameters	vkraken/methods/messages.html#parameters	  Parameters		0
+heading	Result	vkraken/methods/messages.html#result	  Result		0
+heading	Error Codes	vkraken/methods/messages.html#error-codes	  Error Codes		0
+heading	Arguments	vkraken/methods/messages.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/messages.html#result	  Result		0
+heading	Error Codes	vkraken/methods/messages.html#error-codes	  Error Codes		0
+heading	Arguments	vkraken/methods/messages.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/messages.html#result	  Result		0
+heading	Parameters	vkraken/methods/messages.html#parameters	  Parameters		0
+heading	Arguments	vkraken/methods/messages.html#arguments	  Arguments		0
+heading	Permissions	vkraken/methods/messages.html#permissions	  Permissions		0
+heading	Result	vkraken/methods/messages.html#result	  Result		0
+heading	Parameters	vkraken/methods/messages.html#parameters	  Parameters		0
+heading	Result	vkraken/methods/messages.html#result	  Result		0
+heading	Error Codes	vkraken/methods/messages.html#error-codes	  Error Codes		0
+heading	Arguments	vkraken/methods/messages.html#arguments	  Arguments		0
+heading	Result	vkraken/methods/messages.html#result	  Result		0
